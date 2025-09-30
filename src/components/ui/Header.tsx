@@ -19,10 +19,12 @@ const Header = () => {
   const activeBox = useRef<HTMLDivElement | null>(null);
 
   const initActiveBox = () => {
-    activeBox.current.style.top = lastActiveLink.current.offsetTop + 'px';
-    activeBox.current.style.left = lastActiveLink.current.offsetLeft + 'px';
-    activeBox.current.style.width = lastActiveLink.current.offsetWidth + 'px';
-    activeBox.current.style.height = lastActiveLink.current.offsetHeight + 'px';
+    if (activeBox.current && lastActiveLink.current) {
+      activeBox.current.style.top = lastActiveLink.current.offsetTop + 'px';
+      activeBox.current.style.left = lastActiveLink.current.offsetLeft + 'px';
+      activeBox.current.style.width = lastActiveLink.current.offsetWidth + 'px';
+      activeBox.current.style.height = lastActiveLink.current.offsetHeight + 'px';
+    }
   };
 
   useEffect(initActiveBox, []);
@@ -31,13 +33,16 @@ const Header = () => {
 
   const activeCurrentLink = (event: MouseEvent<HTMLAnchorElement>) => {
     lastActiveLink.current?.classList.remove('active');
-    event.target.classList.add('active');
-    lastActiveLink.current = event.target;
+    const target = event.target as HTMLAnchorElement;
+    target.classList.add('active');
+    lastActiveLink.current = target;
 
-    activeBox.current.style.top = event.target.offsetTop + 'px';
-    activeBox.current.style.left = event.target.offsetLeft + 'px';
-    activeBox.current.style.width = event.target.offsetWidth + 'px';
-    activeBox.current.style.height = event.target.offsetHeight + 'px';
+    if (activeBox.current) {
+      activeBox.current.style.top = target.offsetTop + 'px';
+      activeBox.current.style.left = target.offsetLeft + 'px';
+      activeBox.current.style.width = target.offsetWidth + 'px';
+      activeBox.current.style.height = target.offsetHeight + 'px';
+    }
   };
 
   const navItems = [
