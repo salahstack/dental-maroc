@@ -1,0 +1,147 @@
+@import 'tailwindcss';
+
+/*--------------------------*\
+|          Base           |
+\*--------------------------*/
+
+@layer base {
+  a,
+  img,
+  picture,
+  button {
+    @apply block;
+  }
+  button {
+    @apply cursor-pointer;
+  }
+  button {
+    @apply select-none active:scale-95 duration-150;
+  }
+  input,
+  textarea {
+    @apply block
+    outline-none
+    bg-transparent
+    w-full;
+  }
+
+  input[type='password'] {
+    @apply tracking-[5px];
+  }
+
+  input[type='password']::placeholder {
+    @apply tracking-normal;
+  }
+  section {
+    @apply mb-8 md:mb-16;
+  }
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply text-gray-700 bg-white;
+  }
+  .container {
+    @apply mx-auto px-4 md:px-8 lg:px-26;
+  }
+  ::-webkit-scrollbar {
+    @apply w-2
+    h-2
+    rounded-full;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-blue-500
+    rounded-full;
+  }
+}
+
+/*--------------------------*\
+|          Components           |
+\*--------------------------*/
+
+@layer components {
+  /** Text Field  **/
+  .text-field-label {
+    @apply block mb-2 text-sm font-medium text-gray-700;
+  }
+  .text-field {
+    @apply w-full p-2 border-gray-300 rounded-md transition border-2 focus:border-blue-500;
+  }
+  /** Text Field  **/
+  .btn-primary {
+    @apply h-10 rounded-lg px-3 bg-blue-600 flex items-center justify-center text-gray-100;
+  }
+  /* Navbar */
+
+  .navbar {
+    @apply absolute top-full mt-6 right-0 min-w-40 p-2 bg-blue-100/90 rounded-lg ring-inset ring-1 ring-zinc-50/5 scale-90 isolate blur-sm opacity-0 invisible
+    transition-[opacity,transform,filter,scale,visibility] md:static md:mt-0 md:opacity-100 md:visible md:blur-none md:scale-0 backdrop-blur-2xl;
+  }
+
+  .navbar.active {
+    @apply opacity-100 scale-100 blur-none visible;
+  }
+
+  /** Nav Link  **/
+  .nav-link {
+    @apply text-gray-700 hover:text-blue-600 transition px-3 py-2 rounded-md text-sm font-medium;
+  }
+
+  .nav-link.active {
+    @apply text-white duration-500;
+  }
+  .active-box {
+    @apply absolute bg-blue-600 rounded-lg -z-10 transition-[top,left] duration-500;
+  }
+
+  /** Category Card  **/
+  .category-card {
+    @apply p-4 rounded-xl bg-gray-200 flex items-center gap-2
+  }
+  .category-card .category-title {
+    @apply font-medium text-gray-600
+  }
+  /** Info Card  **/
+  .info-card {
+    @apply rounded-lg;
+  }
+
+  /** Product Card  **/
+  .product-card {
+    @apply rounded-lg relative bg-gray-100;
+  }
+  .product-content {
+    @apply p-4;
+  }
+
+  .product-title {
+    @apply font-medium text-xl text-gray-700;
+  }
+  .product-description {
+    @apply text-sm text-gray-500;
+  }
+  .product-price {
+    @apply block text-lg font-semibold mt-3 ;
+  }
+
+  .product-card .fav-icon-btn {
+    @apply absolute top-4 right-4 w-9 h-9 p-1 bg-white text-gray-600
+  }
+
+  .product-card .badge {
+    @apply absolute top-4 left-4 bg-blue-600 text-white text-xs px-2 py-1 rounded-md
+  }
+}
+
+/*--------------------------*\
+|          Utilities           |
+\*--------------------------*/
+@layer utilities {
+  .img-box {
+    @apply overflow-hidden;
+  }
+  .img-cover {
+    @apply w-full h-full object-cover;
+  }
+}

@@ -1,0 +1,80 @@
+/**
+ * Node modules
+ */
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+
+/**
+ * Pages
+ */
+import Register from '../pages/Register';
+import Login from '../pages/login';
+import Home from '../pages/Home';
+import ProductDetails from '../pages/ProductDetails';
+import BestSellers from '../pages/BestSellers';
+import NewArrivals from '../pages/NewArrivals';
+import Shop from '../pages/Shop';
+/**
+ * Layouts
+ */
+import Layout from '../Layouts/Layout';
+
+/**
+ * Routes
+ */
+
+const router = createBrowserRouter([
+  {
+    path: 'register',
+    Component: Register,
+  },
+  {
+    path: 'login',
+    Component: Login,
+  },
+  {
+    path: '/',
+    Component: Layout,
+    children: [
+      {
+        index: true,
+        element: (
+          <Navigate
+            to='/home'
+            replace
+          />
+        ),
+      },
+      {
+        path: 'accueil',
+        Component: Home,
+      },
+      {
+        path: 'produit/:id',
+        Component: ProductDetails,
+      },
+      {
+        path: 'meilleures ventes',
+        Component: BestSellers,
+      },
+      {
+        path: 'nouveautés',
+        Component: NewArrivals,
+      },
+      {
+        path: 'shop',
+        Component: Shop,
+      },
+      {
+        path: '*',
+        element: (
+          <Navigate
+            to='/accueil'
+            replace
+          />
+        ),
+      },
+    ],
+  },
+]);
+
+export default router;
