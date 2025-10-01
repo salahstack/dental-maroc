@@ -3,6 +3,7 @@
  */
 import { Link } from 'react-router-dom';
 import type { MouseEvent } from 'react';
+import { useEffect, useRef } from 'react';
 /**
  * Components
  */
@@ -11,10 +12,14 @@ import Button from './Button';
 /**
  * Icons
  */
-import { Menu } from 'lucide-react';
-import { useEffect, useRef } from 'react';
+import { Menu, X } from 'lucide-react';
+/**
+ * Custom hooks
+ */
+import { useToggle } from '../../hooks/useToggle';
 
 const Header = () => {
+  const [isOpen, toggle] =useToggle();
   const lastActiveLink = useRef<HTMLAnchorElement | null>(null);
   const activeBox = useRef<HTMLLIElement | null>(null);
 
@@ -87,10 +92,11 @@ const Header = () => {
         <div className='relative'>
           <Button
           aria-label='open menu'
-            classes='md:hidden'
-            icon={<Menu />}
+            classes='md:hidden w-10 h-10 p-0'
+            onClick={toggle}
+            icon={ isOpen ? <X /> : <Menu />}
           />
-          <nav className='navbar active'>
+          <nav className={`navbar ${isOpen ? 'active' : ''}`}>
             <ul className='flex flex-col md:flex-row md:items-center'>
               {navItems.map(({ label, link, className, ref }, key) => {
                 return (
