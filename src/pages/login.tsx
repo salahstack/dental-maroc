@@ -76,7 +76,7 @@ const Login = () => {
         </div>
         <Image
           srcSet='/images/login-banner.webp'
-          fallback='/images/login-banner.jpg'
+          fallback='/images/login-banner-fallback.jpg'
           alt='login banner'
           classes='hidden lg:block rounded-lg'
           loading='eager'

@@ -76,7 +76,7 @@ const Register = () => {
         </div>
         <Image
           srcSet='images/login-banner.webp'
-          fallback='images/login-banner.jpg'
+          fallback='images/login-banner-fallback.jpg'
           alt='banner'
           classes='hidden lg:block rounded-lg'
           loading='eager'

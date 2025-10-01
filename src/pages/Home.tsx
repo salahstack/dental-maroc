@@ -21,7 +21,7 @@ const infoCards = [
   {
     smallScreens: '/images/info-80.webp',
     largeScreens: '/images/info-96.webp',
-    altSrc: '/images/info.jpg',
+    altSrc: '/images/info-fallback.jpg',
     title: 'Matériaux dentaires',
     description:
       'Nous fournissons les meilleures résines, plâtres et matériaux de haute qualité pour les laboratoires dentaires.',
@@ -259,13 +259,8 @@ const Home = () => {
             />
           </div>
           <Image
-            srcSet={`
-                  /images/home-400.webp 400w,
-                  /images/home-800.webp 800w,
-                  /images/home-1200.webp 1200w,
-                  /images/home-1600.webp 1600w
-                `}
-            fallback='/images/home.png'
+            srcSet='/images/home-400.webp 400w, /images/home-800.webp 800w, /images/home-1200.webp 1200w, /images/home-1600.webp 1600w'
+            fallback='/images/home-fallback.png'
             alt='Home'
             classes='rounded-lg'
             width='max-lg:w-full max-lg:max-w-sm'
