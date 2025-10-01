@@ -16,7 +16,7 @@ import { useEffect, useRef } from 'react';
 
 const Header = () => {
   const lastActiveLink = useRef<HTMLAnchorElement | null>(null);
-  const activeBox = useRef<HTMLDivElement | null>(null);
+  const activeBox = useRef<HTMLLIElement | null>(null);
 
   const initActiveBox = () => {
     if (activeBox.current && lastActiveLink.current) {
@@ -75,18 +75,22 @@ const Header = () => {
           to='/accueil'
         >
           <Image
-            src='/images/logo.png'
+            srcSet='/images/logo.svg'
+            fallback='/images/logo.svg'
             alt='logo'
             width='w-20'
+            loading='eager'
+            fetchPriority="high"
           />
         </Link>
         {/* Mobile Navigation */}
         <div className='relative'>
           <Button
+          aria-label='open menu'
             classes='md:hidden'
             icon={<Menu />}
           />
-          <nav className='navbar'>
+          <nav className='navbar active'>
             <ul className='flex flex-col md:flex-row md:items-center'>
               {navItems.map(({ label, link, className, ref }, key) => {
                 return (
@@ -102,10 +106,11 @@ const Header = () => {
                   </li>
                 );
               })}
-              <div
+              <li
+                aria-hidden='true'
                 className='active-box'
                 ref={activeBox}
-              ></div>
+              ></li>
             </ul>
             <div className='mt-2 md:hidden'>
               <Link

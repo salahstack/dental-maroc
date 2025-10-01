@@ -36,6 +36,7 @@ const Product: FC<ProductProps> = ({
       <Button
         classes='fav-icon-btn'
         icon={<Heart />}
+        aria-label='add to favorites'
       />
       {bestSeller && <span className='badge'>meilleure vente</span>}
       {newArrival && <span className='badge'>nouveau</span>}
@@ -51,7 +52,8 @@ const Product: FC<ProductProps> = ({
         }}
       >
         <Image
-          src={image}
+          srcSet={image}
+          fallback={image}
           alt={title}
           width='w-full'
           height='h-48'

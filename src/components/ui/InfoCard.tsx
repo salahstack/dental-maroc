@@ -1,28 +1,45 @@
 /**
  * Node modules
  */
-import type { FC } from "react";
-/**
- * Components
- */
-import Image from "./Image";
+import type { FC } from 'react';
 /**
  * Interfaces
  */
 interface InfoCardProps {
-  image: string;
+  smallScreens: string;
+  largeScreens: string;
+  altSrc: string;
   title: string;
   description: string;
-};
-
-const InfoCard: FC<InfoCardProps> = ({ image, title, description }) => {
-  return (
-    <div className="info-card">
-      <Image src={image} alt={title} width="w-20 md:w-24" height="h-20 md:h-24" classes="mx-auto rounded-lg" />
-      <h2 className="text-xl font-bold text-center my-3">{title}</h2>
-      <p className="text-gray-400 text-center text-sm">{description}</p>
-    </div>
-  )
 }
+
+const InfoCard: FC<InfoCardProps> = ({ smallScreens, largeScreens, altSrc, title, description }) => {
+  return (
+    <div className='info-card'>
+      <figure className={`img-box mx-auto w-fit rounded-lg`}>
+        <picture className='h-full'>
+          <source
+            srcSet={smallScreens}
+            type='image/webp'
+            media='(max-width: 767px)'
+          />
+          <source
+            srcSet={largeScreens}
+            type='image/webp'
+            media='(min-width: 768px)'
+          />
+          <img
+            src={altSrc}
+            alt=''
+            className=''
+            loading='lazy'
+          />
+        </picture>
+      </figure>
+      <h2 className='text-xl font-bold text-center my-3'>{title}</h2>
+      <p className='text-gray-600 text-center text-sm'>{description}</p>
+    </div>
+  );
+};
 
 export default InfoCard;

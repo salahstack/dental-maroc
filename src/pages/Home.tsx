@@ -19,19 +19,25 @@ import type { ProductProps } from '../interfaces/products';
 
 const infoCards = [
   {
-    image: 'images/info.jpg',
+    smallScreens: '/images/info-80.webp',
+    largeScreens: '/images/info-96.webp',
+    altSrc: '/images/info.jpg',
     title: 'Matériaux dentaires',
     description:
       'Nous fournissons les meilleures résines, plâtres et matériaux de haute qualité pour les laboratoires dentaires.',
   },
   {
-    image: 'images/info.jpg',
+    smallScreens: '/images/info-80.webp',
+    largeScreens: '/images/info-96.webp',
+    altSrc: '/images/info.jpg',
     title: 'Équipements et instruments',
     description:
       'Les outils de forage, de polissage et les machines de précision les plus récents pour un travail parfait.',
   },
   {
-    image: 'images/info.jpg',
+    smallScreens: '/images/info-80.webp',
+    largeScreens: '/images/info-96.webp',
+    altSrc: '/images/info.jpg',
     title: 'Fournitures d’hygiène',
     description:
       'Des produits de stérilisation et de nettoyage spécialement conçus pour les laboratoires dentaires, garantissant un environnement sûr.',
@@ -240,7 +246,7 @@ const Home = () => {
             <h1 className=' text-3xl lg:text-5xl font-bold mb-4 leading-tight'>
               Outils avancés pour la fabrication dentaire
             </h1>
-            <p className='text-gray-400'>
+            <p className='text-gray-600'>
               Nous fournissons les matériaux et technologies les plus récents
               pour les laboratoires dentaires afin de créer des sourires
               parfaits.
@@ -253,11 +259,20 @@ const Home = () => {
             />
           </div>
           <Image
-            src='images/home.png'
+            srcSet={`
+                  /images/home-400.webp 400w,
+                  /images/home-800.webp 800w,
+                  /images/home-1200.webp 1200w,
+                  /images/home-1600.webp 1600w
+                `}
+            fallback='/images/home.png'
             alt='Home'
             classes='rounded-lg'
             width='max-lg:w-full max-lg:max-w-sm'
             height='h-64 lg:h-[400px] square mx-auto'
+            loading='eager'
+            sizes='(max-width: 768px) 100vw, 50vw'
+            fetchPriority='high'
           />
         </section>
         <section>
@@ -266,7 +281,9 @@ const Home = () => {
             {infoCards.map((info, key) => (
               <InfoCard
                 key={key}
-                image={info.image}
+                smallScreens={info.smallScreens}
+                largeScreens={info.largeScreens}
+                altSrc={info.altSrc}
                 title={info.title}
                 description={info.description}
               />
@@ -275,7 +292,7 @@ const Home = () => {
         </section>
         <section>
           <h2 className='text-3xl font-bold mb-6 text-center'>Catégories</h2>
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
+          <div className='grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6'>
             {categories.map((cat, key) => (
               <CategoryCard
                 key={key}

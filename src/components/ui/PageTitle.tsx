@@ -2,7 +2,7 @@
  * Node modules
  */
 import type { FC } from 'react';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 /**
  * Interface
  */
@@ -14,7 +14,8 @@ const PageTitle: FC<PageTitleProps> = ({ title, content }) => {
       <title>{title}</title>
       <meta
         name='description'
-        content={content} />
+        content={content}
+      />
     </Helmet>
   );
 };
