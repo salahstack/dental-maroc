@@ -2,7 +2,12 @@
  * Node modules
  */
 import type { FC } from 'react';
-import { Helmet } from 'react-helmet-async';
+/**
+ * Node modules
+ */
+import { Helmet } from 'react-helmet'
+
+
 /**
  * Interface
  */
