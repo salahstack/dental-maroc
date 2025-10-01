@@ -131,7 +131,8 @@ const ProductDetails = () => {
         <Breadcrumb />
         <div className='grid grid-cols-1 md:grid-cols-2 items-center gap-8'>
           <Image
-            src={image}
+            srcSet={image}
+            fallback={image}
             alt={title}
             width='w-full max-w-[400px] lg:w-1/2'
             height='h-40 md:h-80'
