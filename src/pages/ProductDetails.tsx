@@ -7,16 +7,19 @@ import { useParams } from 'react-router-dom';
  * Components
  */
 import Image from '../components/ui/Image';
+import PageTitle from '../components/ui/PageTitle';
 /**
  * Icons
  */
-import { Minus, Plus, ShoppingCart } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 /**
  * Interfaces
  */
 import type { ProductProps } from '../interfaces/products';
 import Button from '../components/ui/Button';
 import Breadcrumb from '../components/ui/Breadcrumb';
+import Quantity from '../components/ui/Quantity';
+import { useState } from 'react';
 interface ProductDetailsProps extends ProductProps {
   category: string;
   status: string;
@@ -113,6 +116,8 @@ const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
   const product = newArrivals.find((item) => item.id === Number(id));
 
+  const [quantity, setQuantity] = useState<number>(1)
+
   if (!product) {
     return (
       <section>
@@ -127,6 +132,10 @@ const ProductDetails = () => {
 
   return (
     <section>
+      <PageTitle
+        title={title}
+        content={description}
+      />
       <div className='container'>
         <Breadcrumb />
         <div className='grid grid-cols-1 md:grid-cols-2 items-center gap-8'>
@@ -145,21 +154,19 @@ const ProductDetails = () => {
             </span>
             <span className='product-price mb-3'>{price} DH</span>
             <p className='product-description'>{description}</p>
-            <span className='block mt-2 font-medium text-white bg-green-400 w-fit px-3 py-1 rounded-lg'>
+            <span
+              className={`block mt-2 font-medium text-white ${
+                status === 'In Stock'
+                  ? 'bg-green-400'
+                  : status === 'Limited Stock'
+                  ? 'bg-orange-400'
+                  : 'bg-red-400'
+              } w-fit px-3 py-1 rounded-lg`}
+            >
               {status}
             </span>
-            <div className='flex mt-4 items-center gap-4'>
-              <div className='flex items-center gap-2'>
-                <Button
-                  icon={<Minus />}
-                  classes='bg-gray-200 text-gray-700'
-                />
-                <span>1</span>
-                <Button
-                  icon={<Plus />}
-                  classes='bg-gray-200 text-gray-700'
-                />
-              </div>
+            <div className='flex mt-4 items-center flex-wrap gap-4'>
+              <Quantity quantity={quantity} setQuantity={setQuantity} />
               <Button
                 label='Ajouter au panier'
                 icon={<ShoppingCart />}

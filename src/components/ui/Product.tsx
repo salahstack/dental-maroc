@@ -1,7 +1,7 @@
 /**
  * Node modules
  */
-import type { FC } from 'react';
+import { useState, type FC } from 'react';
 /**
  * Components
  */
@@ -15,9 +15,13 @@ import type { ProductProps } from '../../interfaces/products';
 /**
  * Icons
  */
-import { Heart, ShoppingCart } from 'lucide-react';
+import { Heart, Minus, Plus, ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
+/**
+ * Custom hooks
+ */
+import { useCart } from '../../hooks/useCart';
+import Quantity from './Quantity';
 /**
  * Component
  */
@@ -31,6 +35,8 @@ const Product: FC<ProductProps> = ({
   bestSeller,
   newArrival,
 }) => {
+  const { addProduct } = useCart();
+  const [quantity, setQuantity] = useState(0);
   return (
     <div className='product-card'>
       <Button
@@ -56,7 +62,7 @@ const Product: FC<ProductProps> = ({
           fallback={image}
           alt={title}
           width='w-full'
-          height='h-48'
+          height='h-40 md:h-48'
           classes='rounded-tl-lg rounded-tr-lg'
         />
       </Link>
@@ -78,11 +84,15 @@ const Product: FC<ProductProps> = ({
         </Link>
         <p className='product-description'>{description}</p>
         <span className='product-price'>{price} DH</span>
-        <Button
-          label='Ajouter au panier'
-          icon={<ShoppingCart />}
-          classes='mt-4 w-full flex items-center gap-4'
-        />
+        <div className='flex items-center gap-2 flex-wrap mt-4'>
+          <Quantity quantity={quantity} setQuantity={setQuantity} />
+          <Button
+            label='Ajouter au panier'
+            icon={<ShoppingCart />}
+            classes='w-full flex items-center gap-4'
+            onClick={() => addProduct({id, title, description, image, price, quantity})}
+          />
+        </div>
       </div>
     </div>
   );

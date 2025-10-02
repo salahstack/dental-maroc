@@ -234,6 +234,7 @@ const newArrivals: ProductProps[] = [
 ];
 
 const Home = () => {
+
   return (
     <>
       <PageTitle

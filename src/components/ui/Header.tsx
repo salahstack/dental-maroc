@@ -12,14 +12,16 @@ import Button from './Button';
 /**
  * Icons
  */
-import { Menu, X } from 'lucide-react';
+import { Menu, ShoppingCart, X } from 'lucide-react';
 /**
  * Custom hooks
  */
 import { useToggle } from '../../hooks/useToggle';
+import { useCart } from '../../hooks/useCart';
 
 const Header = () => {
-  const [isOpen, toggle] =useToggle();
+  const [isOpen, toggle] = useToggle();
+  const { cart } = useCart();
   const lastActiveLink = useRef<HTMLAnchorElement | null>(null);
   const activeBox = useRef<HTMLLIElement | null>(null);
 
@@ -28,7 +30,8 @@ const Header = () => {
       activeBox.current.style.top = lastActiveLink.current.offsetTop + 'px';
       activeBox.current.style.left = lastActiveLink.current.offsetLeft + 'px';
       activeBox.current.style.width = lastActiveLink.current.offsetWidth + 'px';
-      activeBox.current.style.height = lastActiveLink.current.offsetHeight + 'px';
+      activeBox.current.style.height =
+        lastActiveLink.current.offsetHeight + 'px';
     }
   };
 
@@ -73,28 +76,34 @@ const Header = () => {
       className: 'nav-link',
     },
   ];
+
+  const totalPrice = cart.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
+
   return (
     <header className='h-18 border-b border-gray-200 flex mb-8 md:mb-16'>
-      <div className='container h-full flex items-center justify-between'>
-        <Link
-          to='/accueil'
-        >
+      <div className='container h-full flex items-center gap-4 justify-between'>
+        <Link to='/accueil'>
           <Image
             srcSet='/images/logo.svg'
             fallback='/images/logo.svg'
             alt='logo'
             width='w-20'
             loading='eager'
-            fetchPriority="high"
+            fetchPriority='high'
           />
         </Link>
         {/* Mobile Navigation */}
-        <div className='relative'>
+        <div className='relative grow flex justify-center'>
           <Button
-          aria-label='open menu'
-            classes='md:hidden w-10 h-10 p-0'
+            aria-label='open menu'
+            classes='md:hidden w-10 h-10 p-0 ml-auto'
             onClick={toggle}
-            icon={ isOpen ? <X /> : <Menu />}
+            icon={
+              isOpen ? <X aria-hidden='true' /> : <Menu aria-hidden='true' />
+            }
           />
           <nav className={`navbar ${isOpen ? 'active' : ''}`}>
             <ul className='flex flex-col md:flex-row md:items-center'>
@@ -134,19 +143,29 @@ const Header = () => {
             </div>
           </nav>
         </div>
-        <div className='items-center gap-2 hidden md:flex'>
-          <Link
-            to='/login'
-            className='nav-link'
-          >
-            Se connecter
-          </Link>
-          <Link
-            to='/register'
-            className='nav-link'
-          >
-            S'inscrire
-          </Link>
+        <div className='flex items-center gap-2'>
+          <nav className='items-center gap-2 hidden md:flex'>
+            <Link
+              to='/login'
+              className='nav-link'
+            >
+              Se connecter
+            </Link>
+            <Link
+              to='/register'
+              className='nav-link'
+            >
+              S'inscrire
+            </Link>
+          </nav>
+          <div className='flex items-center gap-2'>
+            <Button
+              aria-label='open cart'
+              classes='bg-transparent text-gray-700 w-10 h-10 p-0'
+              icon={<ShoppingCart aria-hidden='true' />}
+            />
+            <span className='font-medium'>{totalPrice} DH</span>
+          </div>
         </div>
       </div>
     </header>
