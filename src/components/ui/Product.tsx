@@ -15,7 +15,7 @@ import type { ProductProps } from '../../interfaces/products';
 /**
  * Icons
  */
-import { Heart, Minus, Plus, ShoppingCart } from 'lucide-react';
+import { Heart, ShoppingCart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 /**
  * Custom hooks
