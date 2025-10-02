@@ -84,7 +84,7 @@ const Header = () => {
 
   return (
     <header className='h-18 border-b border-gray-200 flex mb-8 md:mb-16'>
-      <div className='container h-full flex items-center gap-4 justify-between'>
+      <div className='container h-full flex items-center gap-4 md:justify-between'>
         <Link to='/accueil'>
           <Image
             srcSet='/images/logo.svg'
@@ -96,7 +96,7 @@ const Header = () => {
           />
         </Link>
         {/* Mobile Navigation */}
-        <div className='relative grow flex justify-center'>
+        <div className='relative md:grow flex justify-center max-md:order-3'>
           <Button
             aria-label='open menu'
             classes='md:hidden w-10 h-10 p-0 ml-auto'
@@ -143,7 +143,7 @@ const Header = () => {
             </div>
           </nav>
         </div>
-        <div className='flex items-center gap-2'>
+        <div className='flex items-center gap-2 max-md:ml-auto'>
           <nav className='items-center gap-2 hidden md:flex'>
             <Link
               to='/login'
