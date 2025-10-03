@@ -4,12 +4,14 @@ import Image from '../components/ui/Image';
 import Button from '../components/ui/Button';
 import { Trash } from 'lucide-react';
 
-interface CartProps {}
+interface CartProps {
+  isOpen: boolean;
+}
 
-const Cart: FC<CartProps> = ({}) => {
+const Cart: FC<CartProps> = ({ isOpen }) => {
   const { cart, removeProduct } = useCart();
   return (
-    <div className='cart-dropdown'>
+    <div className={`cart-dropdown ${isOpen ? 'active' : ''}`}>
       <div className='border-b border-gray-200 pb-4 mb-4'>
         <h4 className='font-medium'>Votre panier</h4>
       </div>
@@ -32,7 +34,7 @@ const Cart: FC<CartProps> = ({}) => {
                   height='h-14'
                 />
                 <div className='flex-1 mx-4'>
-                  <h5 className='font-medium text-gray-500'>{item.title}</h5>
+                  <h5 className='font-medium text-gray-500 text-sm'>{item.title}</h5>
                   <p className='text-sm text-gray-500 font-medium'>
                     {item.price} DH x {item.quantity}{' '}
                     <span className='text-gray-700'>
@@ -43,7 +45,7 @@ const Cart: FC<CartProps> = ({}) => {
                 <Button
                   onClick={() => removeProduct(item.id)}
                   icon={<Trash />}
-                  classes='text-gray-500 hover:text-red-500 bg-transparent w-10 h-10 p-0'
+                  classes='text-gray-500 hover:text-red-500 bg-transparent w-8 h-8 md:w-10 md:h-10 p-0'
                 />
               </div>
             ))}

@@ -22,6 +22,7 @@ import { useCart } from '../../hooks/useCart';
 
 const Header = () => {
   const [isOpen, toggle] = useToggle();
+  const [isCartOpen, toggleCart] = useToggle();
   const { cart } = useCart();
   const lastActiveLink = useRef<HTMLAnchorElement | null>(null);
   const activeBox = useRef<HTMLLIElement | null>(null);
@@ -166,6 +167,7 @@ const Header = () => {
               aria-label='open cart'
               classes='bg-transparent text-gray-700 w-10 h-10 p-0 relative'
               icon={<ShoppingCart aria-hidden='true' />}
+              onClick={toggleCart}
             >
               {cartItems > 0 && (
                 <span className='absolute w-6 h-6 bg-blue-600 text-white text-sm rounded-full flex items-center justify-center -top-1/2 translate-y-1/2 left-1/2'>
@@ -176,7 +178,7 @@ const Header = () => {
             <span className='font-medium'>{totalPrice} DH</span>
           </div>
         </div>
-        <Cart />
+        <Cart isOpen={isCartOpen}/>
       </div>
     </header>
   );
