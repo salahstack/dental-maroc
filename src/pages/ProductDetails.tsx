@@ -20,6 +20,7 @@ import Button from '../components/ui/Button';
 import Breadcrumb from '../components/ui/Breadcrumb';
 import Quantity from '../components/ui/Quantity';
 import { useState } from 'react';
+import { useCart } from '../hooks/useCart';
 interface ProductDetailsProps extends ProductProps {
   category: string;
   status: string;
@@ -114,9 +115,12 @@ const newArrivals: ProductDetailsProps[] = [
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
+  const { cart, addProduct } = useCart();
+  const productQuantity =
+    cart.find((item) => item.id === Number(id))?.quantity ?? 0;
   const product = newArrivals.find((item) => item.id === Number(id));
 
-  const [quantity, setQuantity] = useState<number>(1)
+  const [quantity, setQuantity] = useState<number>(productQuantity);
 
   if (!product) {
     return (
@@ -166,11 +170,17 @@ const ProductDetails = () => {
               {status}
             </span>
             <div className='flex mt-4 items-center flex-wrap gap-4'>
-              <Quantity quantity={quantity} setQuantity={setQuantity} />
+              <Quantity
+                quantity={quantity}
+                setQuantity={setQuantity}
+              />
               <Button
                 label='Ajouter au panier'
                 icon={<ShoppingCart />}
-                classes='w-full flex items-center gap-4 whitespace-nowrap'
+                classes='w-full flex items-center gap-4'
+                onClick={() =>
+                  addProduct({ id: Number(id), title, description, image, price, quantity })
+                }
               />
             </div>
           </div>

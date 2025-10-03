@@ -87,7 +87,7 @@ const Header = () => {
   const cartItems = cart.reduce((count, item) => count + item.quantity, 0);
 
   return (
-    <header className='h-18 border-b border-gray-200 flex mb-8 md:mb-16'>
+    <header className='h-18 border-b border-gray-200 fixed top-0 left-0 w-full flex bg-white z-40'>
       <div className='container h-full flex items-center gap-4 md:justify-between relative'>
         <Link to='/accueil'>
           <Image

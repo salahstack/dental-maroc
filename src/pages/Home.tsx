@@ -241,8 +241,8 @@ const Home = () => {
         title='Boutique Dentaire | Équipements et Fournitures de Qualité'
         content='Découvrez notre sélection d’équipements dentaires de qualité : fauteuils, instruments, stérilisateurs et dispositifs d’imagerie. La référence des professionnels dentaires.'
       />
-      <div className='container'>
-        <section className='grid grid-cols-1 md:lg:grid-cols-2 lg:grid-cols-[1.5fr_0.9fr] gap-6 items-center'>
+      <section>
+        <div className='container grid grid-cols-1 md:lg:grid-cols-2 lg:grid-cols-[1.5fr_0.9fr] gap-6 items-center'>
           <div className=' w-full max-w-[450px] mx-auto'>
             <h1 className=' text-3xl lg:text-5xl font-bold mb-4 leading-tight'>
               Outils avancés pour la fabrication dentaire
@@ -270,7 +270,7 @@ const Home = () => {
             sizes='(max-width: 768px) 100vw, 50vw'
             fetchPriority='high'
           />
-        </section>
+        </div>
         <section>
           <h2 className='text-3xl font-bold mb-4 text-center'>Nos services</h2>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
@@ -323,7 +323,7 @@ const Home = () => {
             ))}
           </div>
         </section>
-        <section>
+        <div>
           <div className='flex items-center justify-between mb-6 gap-4'>
             <h2 className='text-3xl font-bold'>Nouveautés</h2>
             <Link
@@ -347,8 +347,8 @@ const Home = () => {
               />
             ))}
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </>
   );
 };
