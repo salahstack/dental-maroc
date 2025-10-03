@@ -234,13 +234,13 @@ const newArrivals: ProductProps[] = [
 ];
 
 const Home = () => {
-
   return (
     <>
       <PageTitle
         title='Boutique Dentaire | Équipements et Fournitures de Qualité'
         content='Découvrez notre sélection d’équipements dentaires de qualité : fauteuils, instruments, stérilisateurs et dispositifs d’imagerie. La référence des professionnels dentaires.'
       />
+      {/* Hero Section */}
       <section>
         <div className='container grid grid-cols-1 md:lg:grid-cols-2 lg:grid-cols-[1.5fr_0.9fr] gap-6 items-center'>
           <div className=' w-full max-w-[450px] mx-auto'>
@@ -271,7 +271,11 @@ const Home = () => {
             fetchPriority='high'
           />
         </div>
-        <section>
+      </section>
+
+      {/* Services Section */}
+      <section>
+        <div className='container'>
           <h2 className='text-3xl font-bold mb-4 text-center'>Nos services</h2>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {infoCards.map((info, key) => (
@@ -285,8 +289,11 @@ const Home = () => {
               />
             ))}
           </div>
-        </section>
-        <section>
+        </div>
+      </section>
+      {/* Categories Section */}
+      <section>
+        <div className='container'>
           <h2 className='text-3xl font-bold mb-6 text-center'>Catégories</h2>
           <div className='grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6'>
             {categories.map((cat, key) => (
@@ -297,8 +304,11 @@ const Home = () => {
               />
             ))}
           </div>
-        </section>
-        <section>
+        </div>
+      </section>
+      {/* Best Sellers Section */}
+      <section>
+        <div className='container'>
           <div className='flex items-center justify-between mb-6 gap-4'>
             <h2 className='text-3xl font-bold'>Meilleures ventes</h2>
             <Link
@@ -322,8 +332,11 @@ const Home = () => {
               />
             ))}
           </div>
-        </section>
-        <div>
+        </div>
+      </section>
+      {/* New Arrivals */}
+      <section>
+        <div className='container'>
           <div className='flex items-center justify-between mb-6 gap-4'>
             <h2 className='text-3xl font-bold'>Nouveautés</h2>
             <Link

@@ -67,7 +67,7 @@ const [cart, setCart] = useState<ProductInterface[]>(() => getItem<ProductInterf
     (id: number) => {
       setCart((prevCart) => {
         const updatedCart = prevCart.filter((item) => item.id !== id);
-        setItem('cart', updatedCart); // ✅ save updated
+        setItem('cart', updatedCart);
         return updatedCart;
       });
     },
