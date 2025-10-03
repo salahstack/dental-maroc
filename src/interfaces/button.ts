@@ -9,5 +9,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string,
   icon?: ReactNode,
   classes?: string,
-  state?: object
+  state?: object,
+  children?: ReactNode
 }

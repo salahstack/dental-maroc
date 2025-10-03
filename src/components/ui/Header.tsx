@@ -9,6 +9,7 @@ import { useEffect, useRef } from 'react';
  */
 import Image from './Image';
 import Button from './Button';
+import Cart from '../../pages/Cart';
 /**
  * Icons
  */
@@ -82,9 +83,11 @@ const Header = () => {
     0
   );
 
+  const cartItems = cart.reduce((count, item) => count + item.quantity, 0);
+
   return (
     <header className='h-18 border-b border-gray-200 flex mb-8 md:mb-16'>
-      <div className='container h-full flex items-center gap-4 md:justify-between'>
+      <div className='container h-full flex items-center gap-4 md:justify-between relative'>
         <Link to='/accueil'>
           <Image
             srcSet='/images/logo.svg'
@@ -158,15 +161,22 @@ const Header = () => {
               S'inscrire
             </Link>
           </nav>
-          <div className='flex items-center gap-2'>
+          <div className='flex items-center gap-2 relative'>
             <Button
               aria-label='open cart'
-              classes='bg-transparent text-gray-700 w-10 h-10 p-0'
+              classes='bg-transparent text-gray-700 w-10 h-10 p-0 relative'
               icon={<ShoppingCart aria-hidden='true' />}
-            />
+            >
+              {cartItems > 0 && (
+                <span className='absolute w-6 h-6 bg-blue-600 text-white text-sm rounded-full flex items-center justify-center -top-1/2 translate-y-1/2 left-1/2'>
+                  {cartItems}
+                </span>
+              )}
+            </Button>
             <span className='font-medium'>{totalPrice} DH</span>
           </div>
         </div>
+        <Cart />
       </div>
     </header>
   );

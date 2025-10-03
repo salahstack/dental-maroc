@@ -132,6 +132,10 @@
   .product-card .badge {
     @apply absolute top-4 left-4 bg-blue-600 text-white text-xs px-2 py-1 rounded-md
   }
+  /** Cart DropDown  **/
+  .cart-dropdown {
+    @apply absolute top-full right-4 md:right-8 lg:right-26 mt-6 w-full max-w-[450px] bg-white flex flex-col border border-gray-200 rounded-lg z-10 p-4 shadow-lg min-h-50;
+  }
 }
 
 /*--------------------------*\

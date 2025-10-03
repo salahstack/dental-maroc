@@ -35,8 +35,9 @@ const Product: FC<ProductProps> = ({
   bestSeller,
   newArrival,
 }) => {
-  const { addProduct } = useCart();
-  const [quantity, setQuantity] = useState(0);
+  const { addProduct, cart } = useCart();
+  const productQuantity = cart.find((item) => item.id === id)?.quantity ?? 0;
+  const [quantity, setQuantity] = useState<number>(productQuantity);
   return (
     <div className='product-card'>
       <Button

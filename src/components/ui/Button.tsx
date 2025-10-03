@@ -15,6 +15,7 @@ const Button: FC<ButtonProps> = ({
   classes,
   state,
   icon,
+  children,
   ...rest
 }) => {
   if (to) {
@@ -26,7 +27,7 @@ const Button: FC<ButtonProps> = ({
   } else {
     return (
       <button className={`btn-primary ${classes}`} {...rest}>
-        {label && label} {icon && icon}
+        {label && label} {icon && icon} {children}
       </button>
     );
   }
