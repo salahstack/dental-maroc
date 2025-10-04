@@ -35,7 +35,7 @@ const initialContextValue: CartContextInterface = {
 export const CartContext = createContext(initialContextValue);
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
-  const { clear, setItem, getItem } = useLocalStorage();
+  const { removeItem, setItem, getItem } = useLocalStorage();
 const [cart, setCart] = useState<ProductInterface[]>(() => getItem<ProductInterface[]>('cart') || []);
 
   const addProduct = useCallback(
@@ -76,8 +76,8 @@ const [cart, setCart] = useState<ProductInterface[]>(() => getItem<ProductInterf
 
   const clearCart = useCallback(() => {
     setCart([]);
-    clear();
-  }, [clear]);
+    removeItem('cart');
+  }, [removeItem]);
 
   const contextValue = useMemo(() => {
     return { cart, addProduct, clearCart, removeProduct };

@@ -13,7 +13,7 @@ import Cart from '../../pages/Cart';
 /**
  * Icons
  */
-import { Menu, ShoppingCart, X } from 'lucide-react';
+import { Heart, Menu, ShoppingCart, X } from 'lucide-react';
 /**
  * Custom hooks
  */
@@ -77,6 +77,11 @@ const Header = () => {
       link: '#contact',
       className: 'nav-link',
     },
+    {
+      label: 'Favoris',
+      link: '#favorites',
+      className: 'nav-link',
+    },
   ];
 
   const totalPrice = cart.reduce(
@@ -88,7 +93,7 @@ const Header = () => {
 
   return (
     <header className='h-18 border-b border-gray-200 fixed top-0 left-0 w-full flex bg-white z-40'>
-      <div className='container h-full flex items-center gap-4 md:justify-between relative'>
+      <div className='container h-full flex items-center gap-4 lg:justify-between relative'>
         <Link to='/accueil'>
           <Image
             srcSet='/images/logo.svg'
@@ -100,17 +105,17 @@ const Header = () => {
           />
         </Link>
         {/* Mobile Navigation */}
-        <div className='relative md:grow flex justify-center max-md:order-3'>
+        <div className='relative lg:grow flex justify-center max-lg:order-3'>
           <Button
             aria-label='open menu'
-            classes='md:hidden w-10 h-10 p-0 ml-auto'
+            classes='lg:hidden w-10 h-10 p-0 ml-auto'
             onClick={toggle}
             icon={
               isOpen ? <X aria-hidden='true' /> : <Menu aria-hidden='true' />
             }
           />
           <nav className={`navbar ${isOpen ? 'active' : ''}`}>
-            <ul className='flex flex-col md:flex-row md:items-center'>
+            <ul className='flex flex-col lg:flex-row lg:items-center'>
               {navItems.map(({ label, link, className, ref }, key) => {
                 return (
                   <li key={key}>
@@ -131,7 +136,7 @@ const Header = () => {
                 ref={activeBox}
               ></li>
             </ul>
-            <div className='mt-2 md:hidden'>
+            <div className='mt-2 lg:hidden'>
               <Link
                 to='/login'
                 className='nav-link'
@@ -147,8 +152,8 @@ const Header = () => {
             </div>
           </nav>
         </div>
-        <div className='flex items-center gap-2 max-md:ml-auto'>
-          <nav className='items-center gap-2 hidden md:flex'>
+        <div className='flex items-center gap-2 max-lg:ml-auto'>
+          <nav className='items-center gap-2 hidden lg:flex'>
             <Link
               to='/login'
               className='nav-link'
@@ -177,8 +182,14 @@ const Header = () => {
             </Button>
             <span className='font-medium'>{totalPrice} DH</span>
           </div>
+          <Button
+            to='/favorites'
+            icon={<Heart aria-hidden='true' />}
+            classes='bg-transparent text-gray-700 w-10 h-10 p-0 hidden lg:flex'
+            aria-label='favorites'
+          />
         </div>
-        <Cart isOpen={isCartOpen}/>
+        <Cart isOpen={isCartOpen} />
       </div>
     </header>
   );

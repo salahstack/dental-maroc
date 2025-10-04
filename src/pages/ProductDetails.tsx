@@ -19,7 +19,7 @@ import type { ProductProps } from '../interfaces/products';
 import Button from '../components/ui/Button';
 import Breadcrumb from '../components/ui/Breadcrumb';
 import Quantity from '../components/ui/Quantity';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useCart } from '../hooks/useCart';
 interface ProductDetailsProps extends ProductProps {
   category: string;
@@ -117,10 +117,15 @@ const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
   const { cart, addProduct } = useCart();
   const productQuantity =
-    cart.find((item) => item.id === Number(id))?.quantity ?? 0;
+  cart.find((item) => item.id === Number(id))?.quantity ?? 1;
+  const [quantity, setQuantity] = useState<number>(productQuantity);
   const product = newArrivals.find((item) => item.id === Number(id));
 
-  const [quantity, setQuantity] = useState<number>(productQuantity);
+
+  useEffect(() => {
+    const newQuantity = cart.find((item) => item.id === Number(id))?.quantity ?? 1;
+    setQuantity(newQuantity);
+  }, [cart, id])
 
   if (!product) {
     return (

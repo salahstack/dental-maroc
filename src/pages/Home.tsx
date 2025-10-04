@@ -16,6 +16,8 @@ import PageTitle from '../components/ui/PageTitle';
  * Interfaces
  */
 import type { ProductProps } from '../interfaces/products';
+import ProductSkeleton from '../loaders/ProductSkeleton';
+import { useEffect, useState } from 'react';
 
 const infoCards = [
   {
@@ -234,6 +236,14 @@ const newArrivals: ProductProps[] = [
 ];
 
 const Home = () => {
+  const [products, setProducts] = useState<ProductProps[] | null>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setProducts(newArrivals);
+      return () => clearTimeout(timer);
+    }, 3000);
+  });
   return (
     <>
       <PageTitle
@@ -348,17 +358,21 @@ const Home = () => {
             </Link>
           </div>
           <div className='grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 mb-16'>
-            {newArrivals.map((product, key) => (
-              <Product
-                key={key}
-                id={product.id}
-                image={product.image}
-                title={product.title}
-                price={product.price}
-                description={product.description}
-                newArrival={product.newArrival}
-              />
-            ))}
+            {!products
+              ? Array.from({ length: 10 }).map((_, index) => (
+                  <ProductSkeleton key={index} />
+                ))
+              : products.map((product, key) => (
+                  <Product
+                    key={key}
+                    id={product.id}
+                    image={product.image}
+                    title={product.title}
+                    price={product.price}
+                    description={product.description}
+                    newArrival={product.newArrival}
+                  />
+                ))}
           </div>
         </div>
       </section>

@@ -1,12 +1,13 @@
 /**
  * Node modules
  */
-import { useState, type FC } from 'react';
+import { useEffect, useState, type FC } from 'react';
 /**
  * Components
  */
 import Image from './Image';
 import Button from './Button';
+import Quantity from './Quantity';
 
 /**
  * Interfaces
@@ -21,7 +22,7 @@ import { Link } from 'react-router-dom';
  * Custom hooks
  */
 import { useCart } from '../../hooks/useCart';
-import Quantity from './Quantity';
+import { useFavorite } from '../../hooks/useFavorite';
 /**
  * Component
  */
@@ -36,14 +37,38 @@ const Product: FC<ProductProps> = ({
   newArrival,
 }) => {
   const { addProduct, cart } = useCart();
-  const productQuantity = cart.find((item) => item.id === id)?.quantity ?? 0;
+  const { addToFavorite, removeFromFavorite, favorite } = useFavorite();
+  const productQuantity = cart.find((item) => item.id === id)?.quantity ?? 1;
   const [quantity, setQuantity] = useState<number>(productQuantity);
+  const isProductExistsInFavorite = !!favorite.find(item => item.id === Number(id));
+  const [isFavorite, setIsFavorite] = useState<boolean>(isProductExistsInFavorite);
+
+  useEffect(() => {
+    const newQuantity = cart.find((item) => item.id === id)?.quantity ?? 1;
+    setQuantity(newQuantity);
+  }, [cart, id])
+
+  useEffect(() => {
+    if(isFavorite) {
+      addToFavorite({ id, title, description, image, price });
+    }
+    else {
+      removeFromFavorite(id)
+    }
+  }, [isFavorite])
+
+  const handleToggleFavorite = () => {
+    setIsFavorite((prev) => !prev);
+  }
+
+
   return (
     <div className='product-card'>
       <Button
         classes='fav-icon-btn'
-        icon={<Heart />}
+        icon={<Heart className={`${isFavorite ? 'text-blue-600 fill-blue-600' : ''}`}/>}
         aria-label='add to favorites'
+        onClick={() => handleToggleFavorite()}
       />
       {bestSeller && <span className='badge'>meilleure vente</span>}
       {newArrival && <span className='badge'>nouveau</span>}
@@ -52,6 +77,7 @@ const Product: FC<ProductProps> = ({
         state={{
           section: bestSeller
             ? 'meilleures ventes'
+
             : newArrival
             ? 'nouveautés'
             : 'Products',
