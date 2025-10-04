@@ -50,9 +50,9 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose }) => {
                 un compte pour bénéficier d'avantages supplémentaires à
                 l'avenir.
               </p>
-              <div className='mt-3 flex items-center justify-between gap-2'>
-                <Button label='Créer un compte' to='/login' classes='bg-gray-300 text-gray-700'/>
-                <Button label="Continuer en tant qu'invité" onClick={() => {
+              <div className='mt-3 flex items-center justify-center flex-wrap gap-2'>
+                <Button label='Créer un compte' to='/login' classes='bg-gray-300 text-gray-700 whitespace-nowrap'/>
+                <Button label="Continuer en tant qu'invité" classes='whitespace-nowrap' onClick={() => {
                   navigate('confirmation-commande');
                   onClose();
                 } } />
