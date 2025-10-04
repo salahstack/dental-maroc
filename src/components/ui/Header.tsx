@@ -22,7 +22,7 @@ import { useCart } from '../../hooks/useCart';
 
 const Header = () => {
   const [isOpen, toggle] = useToggle();
-  const [isCartOpen, toggleCart] = useToggle();
+  const [isCartOpen, toggleCart, closeCart,] = useToggle();
   const { cart } = useCart();
   const lastActiveLink = useRef<HTMLAnchorElement | null>(null);
   const activeBox = useRef<HTMLLIElement | null>(null);
@@ -38,6 +38,7 @@ const Header = () => {
   };
 
   useEffect(initActiveBox, []);
+
 
   window.addEventListener('resize', initActiveBox);
 
@@ -189,7 +190,10 @@ const Header = () => {
             aria-label='favorites'
           />
         </div>
-        <Cart isOpen={isCartOpen} />
+        <Cart
+          isOpen={isCartOpen}
+          onClose={closeCart}
+        />
       </div>
     </header>
   );

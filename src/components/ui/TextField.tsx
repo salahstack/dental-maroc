@@ -14,6 +14,7 @@ const TextField: FC<TextFieldProps> = ({
   name,
   classes = '',
   fieldClasses = '',
+  ...rest
 }) => {
   return (
     <div className={`text-field-wrapper ${classes}`}>
@@ -28,6 +29,7 @@ const TextField: FC<TextFieldProps> = ({
         placeholder={placeholder}
         name={name}
         className={`text-field ${fieldClasses}`}
+        {...rest}
       />
     </div>
   );

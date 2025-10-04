@@ -143,6 +143,10 @@
   .cart-dropdown.active {
     @apply opacity-100 scale-100 visible;
   }
+  /** Modal **/
+  .modal {
+    @apply fixed left-1/2 -translate-x-1/2 p-4 rounded-lg bg-white z-50 w-[calc(100%-32px)] max-w-[450px]
+  }
 }
 
 /*--------------------------*\

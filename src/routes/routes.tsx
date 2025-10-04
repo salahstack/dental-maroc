@@ -13,6 +13,8 @@ import ProductDetails from '../pages/ProductDetails';
 import BestSellers from '../pages/BestSellers';
 import NewArrivals from '../pages/NewArrivals';
 import Shop from '../pages/Shop';
+import Favorites from '../pages/Favorites';
+import ConfirmOrder from '../pages/ConfirmOrder';
 /**
  * Layouts
  */
@@ -65,6 +67,10 @@ const router = createBrowserRouter([
         Component: Shop,
       },
       {
+        path: 'favoris',
+        Component: Favorites,
+      },
+      {
         path: '*',
         element: (
           <Navigate
@@ -74,6 +80,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: 'confirmation-commande',
+    Component: ConfirmOrder,
   },
 ]);
 
