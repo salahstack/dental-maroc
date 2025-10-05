@@ -29,7 +29,10 @@ const Cart: FC<CartProps> = ({ isOpen, onClose }) => {
   const { cart, removeProduct } = useCart();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const handleClose = () => onClose();
+  const handleClose = () => {
+    setIsModalOpen(false);
+    onClose();
+  };
   const handleOpen = () => setIsModalOpen(true);
 
   return (
