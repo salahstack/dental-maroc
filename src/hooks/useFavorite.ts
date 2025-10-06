@@ -1,14 +1,12 @@
 /**
  * Node modules
  */
-import { useContext } from "react";
+import { useContext } from 'react';
 /**
  * Contexts
  */
-import { FavoriteContext } from "../contexts/FavoriteContext";
+import { FavoritesContext } from '../contexts/FavoritesContext';
 
-const useFavorite = () => useContext(FavoriteContext);
+const useFavorite = () => useContext(FavoritesContext);
 
-export {
-  useFavorite
-}
+export { useFavorite };

@@ -1,3 +1,6 @@
+/**
+ * Node modules
+ */
 import {
   createContext,
   useCallback,
@@ -5,48 +8,53 @@ import {
   useState,
   type ReactNode,
 } from 'react';
+/**
+ * Hooks
+ */
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
-interface ProductInterface {
-  id: number;
-  image: string;
-  title: string;
-  description: string;
-  price: number;
-}
+/**
+ * Interfaces
+*/
+import type { ProductProps } from '../interfaces/products';
+
 
 interface FavoriteContextInterface {
-  favorite: ProductInterface[];
-  addToFavorite: (product: ProductInterface) => void;
+  favorites: ProductProps[];
+  addToFavorite: (product: ProductProps) => void;
   removeFromFavorite: (id: number) => void;
   clearFavorite: () => void;
-}
+};
+
+/**
+ * Initial context value
+ */
 
 const initialContextValue: FavoriteContextInterface = {
-  favorite: [],
+  favorites: [],
   addToFavorite: () => {},
   removeFromFavorite: () => {},
   clearFavorite: () => {},
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const FavoriteContext = createContext(initialContextValue);
+export const FavoritesContext = createContext(initialContextValue);
 
 const FavoriteProvider = ({ children }: { children: ReactNode }) => {
   const { getItem, setItem, removeItem } = useLocalStorage();
-  const [favorite, setFavorite] = useState<ProductInterface[]>(
-    () => getItem<ProductInterface[]>('favorite') || []
+  const [favorites, setFavorites] = useState<ProductProps[]>(
+    () => getItem<ProductProps[]>('favorite') || []
   );
 
   const addToFavorite = useCallback(
-    (product: ProductInterface) => {
-      setFavorite((prev) => {
+    (product: ProductProps) => {
+      setFavorites((prev) => {
         const exists = prev.some((item) => item.id === product.id);
         if (exists) return prev;
 
-        const updateFavorite = [...prev, product];
-        setItem('favorite', updateFavorite);
-        return updateFavorite;
+        const updateFavorites = [...prev, product];
+        setItem('favorite', updateFavorites);
+        return updateFavorites;
       });
     },
     [setItem]
@@ -54,29 +62,29 @@ const FavoriteProvider = ({ children }: { children: ReactNode }) => {
 
   const removeFromFavorite = useCallback(
     (id: number) => {
-      setFavorite((prev) => {
-        const updateFavorite = prev.filter((item) => item.id !== Number(id));
-        setItem('favorite', updateFavorite);
-        return updateFavorite;
+      setFavorites((prev) => {
+        const updateFavorites = prev.filter((item) => item.id !== Number(id));
+        setItem('favorite', updateFavorites);
+        return updateFavorites;
       });
     },
     [setItem]
   );
 
   const clearFavorite = useCallback(() => {
-    setFavorite([]);
+    setFavorites([]);
     removeItem('favorite');
   }, [removeItem]);
 
   const contextValue = useMemo(
-    () => ({ addToFavorite, removeFromFavorite, clearFavorite, favorite }),
-    [addToFavorite, removeFromFavorite, clearFavorite, favorite]
+    () => ({ addToFavorite, removeFromFavorite, clearFavorite, favorites }),
+    [addToFavorite, removeFromFavorite, clearFavorite, favorites]
   );
 
   return (
-    <FavoriteContext.Provider value={contextValue}>
+    <FavoritesContext.Provider value={contextValue}>
       {children}
-    </FavoriteContext.Provider>
+    </FavoritesContext.Provider>
   );
 };
 
