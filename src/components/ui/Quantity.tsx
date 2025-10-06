@@ -22,7 +22,7 @@ const Quantity: FC<QuantityProps> = ({ quantity, setQuantity }) => {
       <Button
         icon={<Minus />}
         classes='text-gray-700 w-10 h-10 p-0 text-white'
-        onClick={() => setQuantity((prev) => Math.max(prev - 1, 0))}
+        onClick={() => setQuantity((prev) => Math.max(prev - 1, 1))}
         aria-label='decrease quantity'
       />
       <span className='font-medium'>{quantity}</span>

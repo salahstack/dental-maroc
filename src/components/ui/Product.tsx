@@ -1,7 +1,7 @@
 /**
  * Node modules
  */
-import { useEffect, useState, type FC } from 'react';
+import { useState, type FC } from 'react';
 /**
  * Components
  */
@@ -36,39 +36,32 @@ const Product: FC<ProductProps> = ({
   bestSeller,
   newArrival,
 }) => {
-  const { addProduct, cart } = useCart();
-  const { addToFavorite, removeFromFavorite, favorite } = useFavorite();
-  const productQuantity = cart.find((item) => item.id === id)?.quantity ?? 1;
-  const [quantity, setQuantity] = useState<number>(productQuantity);
-  const isProductExistsInFavorite = !!favorite.find(item => item.id === Number(id));
-  const [isFavorite, setIsFavorite] = useState<boolean>(isProductExistsInFavorite);
+  const { addProduct } = useCart();
+  const { addToFavorite, removeFromFavorite, favorites } = useFavorite();
+  const [quantity, setQuantity] = useState<number>(1);
+  const isFavorite = !!favorites.find((item) => Number(item.id) === Number(id));
 
-  useEffect(() => {
-    const newQuantity = cart.find((item) => item.id === id)?.quantity ?? 1;
-    setQuantity(newQuantity);
-  }, [cart, id])
-
-  useEffect(() => {
-    if(isFavorite) {
-      addToFavorite({ id, title, description, image, price });
-    }
-    else {
-      removeFromFavorite(id)
-    }
-  }, [isFavorite])
-
-  const handleToggleFavorite = () => {
-    setIsFavorite((prev) => !prev);
+const handleToggleFavorite = () => {
+  if (isFavorite) {
+    removeFromFavorite(id);
+  } else {
+    addToFavorite({ id, title, description, image, price, bestSeller, newArrival });
   }
-
+};
 
   return (
     <div className='product-card'>
       <Button
         classes='fav-icon-btn'
-        icon={<Heart className={`${isFavorite ? 'text-blue-600 fill-blue-600' : ''}`}/>}
+        icon={
+          <Heart
+            className={`${
+              isFavorite ? 'text-blue-600 fill-blue-600' : ''
+            }`}
+          />
+        }
         aria-label='add to favorites'
-        onClick={() => handleToggleFavorite()}
+        onClick={handleToggleFavorite}
       />
       {bestSeller && <span className='badge'>meilleure vente</span>}
       {newArrival && <span className='badge'>nouveau</span>}
@@ -77,7 +70,6 @@ const Product: FC<ProductProps> = ({
         state={{
           section: bestSeller
             ? 'meilleures ventes'
-
             : newArrival
             ? 'nouveautés'
             : 'Products',
@@ -112,12 +104,18 @@ const Product: FC<ProductProps> = ({
         <p className='product-description'>{description}</p>
         <span className='product-price'>{price} DH</span>
         <div className='flex items-center gap-2 flex-wrap mt-4'>
-          <Quantity quantity={quantity} setQuantity={setQuantity} />
+          <Quantity
+            quantity={quantity}
+            setQuantity={setQuantity}
+          />
           <Button
             label='Ajouter au panier'
             icon={<ShoppingCart />}
             classes='w-full flex items-center gap-4'
-            onClick={() => addProduct({id, title, description, image, price, quantity})}
+            onClick={() => {
+              addProduct({ id, title, description, image, price, quantity });
+              setQuantity(1);
+            }}
           />
         </div>
       </div>

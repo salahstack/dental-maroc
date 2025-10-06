@@ -44,22 +44,33 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose }) => {
               exit={{ opacity: 0, top: 'calc(50% + 32px)', translateY: '-50%' }}
               transition={{ duration: 0.2 }}
             >
-              <h3 className='text-center font-medium text-lg mb-2'>Passer la commande</h3>
+              <h3 className='text-center font-medium text-lg mb-2'>
+                Passer la commande
+              </h3>
               <p className='text-center leading-tight text-gray-500'>
                 Vous pouvez continuer votre commande en tant qu'invité ou créer
                 un compte pour bénéficier d'avantages supplémentaires à
                 l'avenir.
               </p>
-              <div className='mt-3 flex items-center justify-center flex-wrap gap-2'>
-                <Button label='Créer un compte' to='/login' classes='bg-gray-300 text-gray-700 whitespace-nowrap'/>
-                <Button label="Continuer en tant qu'invité" classes='whitespace-nowrap' onClick={() => {
-                  navigate('confirmation-commande');
-                  onClose();
-                } } />
+              <div className='mt-3 flex items-center flex-wrap gap-2'>
+                <Button
+                  label="Continuer en tant qu'invité"
+                  classes='whitespace-nowrap w-full'
+                  onClick={() => {
+                    navigate('confirmation-commande');
+                    onClose();
+                  }}
+                />
+                <Button
+                  label='Créer un compte'
+                  to='/login'
+                  classes='bg-gray-300 text-gray-700 whitespace-nowrap w-full'
+                />
               </div>
             </motion.div>
             <motion.div
-              className='fixed inset-0 z-40 bg-black/50 cursor-pointer' tabIndex={-1}
+              className='fixed inset-0 z-40 bg-black/50 cursor-pointer'
+              tabIndex={-1}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

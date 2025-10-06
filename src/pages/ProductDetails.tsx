@@ -2,25 +2,28 @@
  * Node modules
  */
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
 /**
  * Components
  */
 import Image from '../components/ui/Image';
 import PageTitle from '../components/ui/PageTitle';
+import Button from '../components/ui/Button';
+import Breadcrumb from '../components/ui/Breadcrumb';
+import Quantity from '../components/ui/Quantity';
 /**
  * Icons
  */
 import { ShoppingCart } from 'lucide-react';
 /**
+ * Custom hooks
+ */
+import { useCart } from '../hooks/useCart';
+/**
  * Interfaces
  */
 import type { ProductProps } from '../interfaces/products';
-import Button from '../components/ui/Button';
-import Breadcrumb from '../components/ui/Breadcrumb';
-import Quantity from '../components/ui/Quantity';
-import { useEffect, useState } from 'react';
-import { useCart } from '../hooks/useCart';
 interface ProductDetailsProps extends ProductProps {
   category: string;
   status: string;
@@ -115,17 +118,10 @@ const newArrivals: ProductDetailsProps[] = [
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const { cart, addProduct } = useCart();
-  const productQuantity =
-  cart.find((item) => item.id === Number(id))?.quantity ?? 1;
-  const [quantity, setQuantity] = useState<number>(productQuantity);
+  const { addProduct } = useCart();
+
+  const [quantity, setQuantity] = useState<number>(1);
   const product = newArrivals.find((item) => item.id === Number(id));
-
-
-  useEffect(() => {
-    const newQuantity = cart.find((item) => item.id === Number(id))?.quantity ?? 1;
-    setQuantity(newQuantity);
-  }, [cart, id])
 
   if (!product) {
     return (
@@ -183,9 +179,17 @@ const ProductDetails = () => {
                 label='Ajouter au panier'
                 icon={<ShoppingCart />}
                 classes='w-full flex items-center gap-4'
-                onClick={() =>
-                  addProduct({ id: Number(id), title, description, image, price, quantity })
-                }
+                onClick={() => {
+                  addProduct({
+                    id: Number(id),
+                    title,
+                    description,
+                    image,
+                    price,
+                    quantity,
+                  });
+                  setQuantity(1);
+                }}
               />
             </div>
           </div>
