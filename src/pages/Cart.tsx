@@ -26,7 +26,7 @@ interface CartProps {
 }
 
 const Cart: FC<CartProps> = ({ isOpen, onClose }) => {
-  const { cart, removeProduct } = useCart();
+  const { cart, removeProduct, clearCart } = useCart();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleClose = () => {
@@ -41,11 +41,22 @@ const Cart: FC<CartProps> = ({ isOpen, onClose }) => {
         <div className='border-b border-gray-200 pb-4 mb-4'>
           <h4 className='font-medium'>Votre panier</h4>
         </div>
-        <div className='flex flex-col grow gap-4'>
+        <div className='flex flex-col grow gap-3'>
           {cart.length === 0 ? (
             <p className='m-auto font-medium'>Votre panier est vide</p>
           ) : (
             <>
+              <div className='flex items-center justify-between'>
+                <p className='text-sm'>
+                  {cart.length} produit{cart.length > 1 ? 's' : ''} dans le
+                  panier
+                </p>
+                <Button
+                  label='Vider le panier'
+                  classes='text-sm text-red-500 bg-transparent p-0 hover:underline'
+                  onClick={clearCart}
+                />
+              </div>
               {cart.map((item) => (
                 <div
                   key={item.id}

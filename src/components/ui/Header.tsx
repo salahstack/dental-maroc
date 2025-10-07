@@ -184,10 +184,10 @@ const Header = () => {
             <span className='font-medium'>{totalPrice} DH</span>
           </div>
           <Button
-            to='/favorites'
+            to='/favoris'
             icon={<Heart aria-hidden='true' />}
             classes='bg-transparent text-gray-700 w-10 h-10 p-0 hidden lg:flex'
-            aria-label='favorites'
+            aria-label='favoris'
           />
         </div>
         <Cart

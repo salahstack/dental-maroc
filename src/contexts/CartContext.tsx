@@ -49,7 +49,7 @@ const [cart, setCart] = useState<ProductInterface[]>(() => getItem<ProductInterf
         if (productExists) {
           updatedCart = prevCart.map((item) =>
             item.id === newProduct.id
-              ? { ...item, quantity: newProduct.quantity }
+              ? { ...item, quantity: item.quantity + newProduct.quantity }
               : item
           );
         } else {
