@@ -96,19 +96,12 @@ const ConfirmOrder = () => {
               required
             />
             <Button
-              label='Confirmer la commande'
               classes='mt-4 w-full bg-blue-600 text-white'
-            />
+            >
+              Confirmer la commande
+            </Button>
           </form>
         </div>
-        {/* <div className='mt-6 text-center'>
-          <Link
-            to='/'
-            className='text-blue-600 hover:underline'
-          >
-            Retour à l'accueil
-          </Link>
-        </div> */}
       </div>
     </section>
   );

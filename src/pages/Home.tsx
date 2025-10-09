@@ -263,11 +263,12 @@ const Home = () => {
               parfaits.
             </p>
             <Button
-              label='acheter maintenant'
               to='/shop'
               classes='mt-6'
               state={{ section: 'shop' }}
-            />
+            >
+              acheter maintenant
+            </Button>
           </div>
           <Image
             srcSet='/images/home-400.webp 400w, /images/home-800.webp 800w, /images/home-1200.webp 1200w, /images/home-1600.webp 1600w'
