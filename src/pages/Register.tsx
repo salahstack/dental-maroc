@@ -54,10 +54,11 @@ const Register = () => {
                 type='password'
               />
               <Button
-                label="S'inscrire"
                 type='submit'
                 classes='w-full mt-4'
-              />
+              >
+                S'inscrire
+              </Button>
             </form>
             <p className='text-center mt-2 text-sm'>
               Vous avez déjà un compte ?{' '}
