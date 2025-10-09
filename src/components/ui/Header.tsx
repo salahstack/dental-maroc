@@ -8,7 +8,7 @@ import { useEffect, useRef } from 'react';
  * Components
  */
 import Image from './Image';
-import Button from './Button';
+import { IconButton } from './Button';
 import Cart from '../../pages/Cart';
 /**
  * Icons
@@ -107,9 +107,12 @@ const Header = () => {
         </Link>
         {/* Mobile Navigation */}
         <div className='relative lg:grow flex justify-center max-lg:order-3'>
-          <Button
+          <IconButton
             aria-label='open menu'
-            classes='lg:hidden w-10 h-10 p-0 ml-auto'
+            classes='lg:hidden ml-auto'
+            variant='text'
+            color='secondary'
+
             onClick={toggle}
             icon={
               isOpen ? <X aria-hidden='true' /> : <Menu aria-hidden='true' />
@@ -169,9 +172,11 @@ const Header = () => {
             </Link>
           </nav>
           <div className='flex items-center gap-2 relative'>
-            <Button
+            <IconButton
               aria-label='open cart'
-              classes='bg-transparent text-gray-700 w-10 h-10 p-0 relative'
+              classes='relative'
+              variant='text'
+              color='secondary'
               icon={<ShoppingCart aria-hidden='true' />}
               onClick={toggleCart}
             >
@@ -180,13 +185,15 @@ const Header = () => {
                   {cartItems}
                 </span>
               )}
-            </Button>
+            </IconButton>
             <span className='font-medium'>{totalPrice} DH</span>
           </div>
-          <Button
+          <IconButton
             to='/favoris'
             icon={<Heart aria-hidden='true' />}
-            classes='bg-transparent text-gray-700 w-10 h-10 p-0 hidden lg:flex'
+            classes='hidden lg:flex'
+            variant='text'
+            color='secondary'
             aria-label='favoris'
           />
         </div>

@@ -10,7 +10,7 @@ import { useCart } from '../hooks/useCart';
  * Components
  */
 import Image from '../components/ui/Image';
-import Button from '../components/ui/Button';
+import Button, { IconButton } from '../components/ui/Button';
 import Modal from '../components/ui/Modal';
 /**
  * Icons
@@ -52,10 +52,13 @@ const Cart: FC<CartProps> = ({ isOpen, onClose }) => {
                   panier
                 </p>
                 <Button
-                  label='Vider le panier'
-                  classes='text-sm text-red-500 bg-transparent p-0 hover:underline'
+                variant='filled'
+                color='danger'
+                size='sm'
                   onClick={clearCart}
-                />
+                >
+                  Vider le panier
+                </Button>
               </div>
               {cart.map((item) => (
                 <div
@@ -81,18 +84,20 @@ const Cart: FC<CartProps> = ({ isOpen, onClose }) => {
                       </span>
                     </p>
                   </div>
-                  <Button
+                  <IconButton
                     onClick={() => removeProduct(item.id)}
                     icon={<Trash />}
-                    classes='text-gray-500 hover:text-red-500 bg-transparent w-8 h-8 md:w-10 md:h-10 p-0'
+                    variant='filled'
+                    color='secondary'
                   />
                 </div>
               ))}
               <Button
-                label='Valider la commande'
                 classes='w-full'
                 onClick={handleOpen}
-              />
+              >
+                Valider la commande
+              </Button>
             </>
           )}
         </div>

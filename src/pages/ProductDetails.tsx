@@ -176,9 +176,7 @@ const ProductDetails = () => {
                 setQuantity={setQuantity}
               />
               <Button
-                label='Ajouter au panier'
-                icon={<ShoppingCart />}
-                classes='w-full flex items-center gap-4'
+                classes='w-full'
                 onClick={() => {
                   addProduct({
                     id: Number(id),
@@ -190,7 +188,10 @@ const ProductDetails = () => {
                   });
                   setQuantity(1);
                 }}
-              />
+              >
+                <ShoppingCart />
+                Ajouter au panier
+              </Button>
             </div>
           </div>
         </div>

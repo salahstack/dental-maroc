@@ -6,7 +6,7 @@ import { useState, type FC } from 'react';
  * Components
  */
 import Image from './Image';
-import Button from './Button';
+import Button, { IconButton } from './Button';
 import Quantity from './Quantity';
 
 /**
@@ -41,23 +41,31 @@ const Product: FC<ProductProps> = ({
   const [quantity, setQuantity] = useState<number>(1);
   const isFavorite = !!favorites.find((item) => Number(item.id) === Number(id));
 
-const handleToggleFavorite = () => {
-  if (isFavorite) {
-    removeFromFavorite(id);
-  } else {
-    addToFavorite({ id, title, description, image, price, bestSeller, newArrival });
-  }
-};
+  const handleToggleFavorite = () => {
+    if (isFavorite) {
+      removeFromFavorite(id);
+    } else {
+      addToFavorite({
+        id,
+        title,
+        description,
+        image,
+        price,
+        bestSeller,
+        newArrival,
+      });
+    }
+  };
 
   return (
     <div className='product-card'>
-      <Button
-        classes='fav-icon-btn'
+      <IconButton
+        classes='absolute top-4 right-4'
+        variant='filled'
+        color='secondary'
         icon={
           <Heart
-            className={`${
-              isFavorite ? 'text-blue-600 fill-blue-600' : ''
-            }`}
+            className={`${isFavorite ? 'text-blue-600 fill-blue-600' : ''}`}
           />
         }
         aria-label='add to favorites'
@@ -109,14 +117,15 @@ const handleToggleFavorite = () => {
             setQuantity={setQuantity}
           />
           <Button
-            label='Ajouter au panier'
-            icon={<ShoppingCart />}
-            classes='w-full flex items-center gap-4'
+            classes='w-full'
             onClick={() => {
               addProduct({ id, title, description, image, price, quantity });
               setQuantity(1);
             }}
-          />
+          >
+            <ShoppingCart />
+            Ajouter au panier
+          </Button>
         </div>
       </div>
     </div>
