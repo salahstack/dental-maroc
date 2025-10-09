@@ -54,10 +54,11 @@ const Login = () => {
                 Mot de passe oublié ?
               </Link>
               <Button
-                label='Se connecter'
                 type='submit'
                 classes='w-full mt-4'
-              />
+              >
+                Se connecter
+              </Button>
             </form>
             <p className='text-center mt-2 text-sm'>
               Vous n'avez pas de compte ?{' '}
