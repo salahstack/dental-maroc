@@ -14,7 +14,8 @@
   button {
     @apply cursor-pointer;
   }
-  button {
+  button,
+  a {
     @apply select-none active:scale-95 duration-150;
   }
   input,
@@ -43,7 +44,7 @@
     @apply text-gray-700 bg-white;
   }
   :focus-visible {
-    @apply outline-2 outline-blue-400
+    @apply outline-2 outline-blue-400;
   }
   .container {
     @apply mx-auto px-4 md:px-8 lg:px-26;
@@ -60,7 +61,7 @@
 }
 
 /*--------------------------*\
-|          Components           |
+|          COMPONENTS           |
 \*--------------------------*/
 
 @layer components {
@@ -71,10 +72,44 @@
   .text-field {
     @apply w-full p-2 border-gray-300 rounded-md transition border-2 focus:border-blue-500;
   }
-  /** Text Field  **/
-  .btn-primary {
-    @apply h-10 rounded-lg px-3 bg-blue-600 flex items-center justify-center text-gray-100;
+  /**
+  * Button
+  */
+  .btn {
+    @apply rounded-lg flex items-center justify-center gap-4;
   }
+  .btn.md {
+    @apply h-10 px-4;
+  }
+  .btn.sm {
+    @apply h-8 px-2 text-xs;
+  }
+  .btn.filled.primary {
+    @apply bg-blue-600 text-white hover:bg-blue-500 active:bg-blue-700;
+  }
+  .btn.filled.secondary {
+    @apply bg-white text-gray-800;
+  }
+  .btn.filled.danger {
+    @apply bg-red-500 text-white;
+  }
+
+  .btn-icon {
+    @apply w-10 h-10 flex items-center justify-center rounded-lg;
+  }
+  .btn-icon.filled.primary {
+    @apply bg-blue-600 text-white;
+  }
+  .btn-icon.filled.secondary {
+    @apply bg-white text-black;
+  }
+  .btn-icon.text.primary {
+    @apply text-blue-600;
+  }
+  .btn-icon.text.secondary {
+    @apply text-black;
+  }
+
   /* Navbar */
 
   .navbar {
@@ -90,6 +125,7 @@
   .nav-link {
     @apply text-gray-700 hover:text-blue-600 transition px-3 py-2 rounded-md text-sm font-medium;
   }
+  /**  Active Nav Link  **/
 
   .nav-link.active {
     @apply text-white duration-500;
@@ -128,10 +164,6 @@
     @apply block text-lg font-semibold mt-3;
   }
 
-  .product-card .fav-icon-btn {
-    @apply absolute top-4 right-4 w-9 h-9 p-1 bg-white text-gray-600;
-  }
-
   .product-card .badge {
     @apply absolute top-4 left-4 bg-blue-600 text-white text-xs px-2 py-1 rounded-md;
   }
@@ -145,7 +177,7 @@
   }
   /** Modal **/
   .modal {
-    @apply fixed left-1/2 -translate-x-1/2 p-4 rounded-lg bg-white z-50 w-[calc(100%-32px)] max-w-[450px]
+    @apply fixed left-1/2 -translate-x-1/2 p-4 rounded-lg bg-white z-50 w-[calc(100%-32px)] max-w-[450px];
   }
 }
 

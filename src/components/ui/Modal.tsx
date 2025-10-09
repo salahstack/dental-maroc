@@ -54,18 +54,20 @@ const Modal: FC<ModalProps> = ({ isOpen, onClose }) => {
               </p>
               <div className='mt-3 flex items-center flex-wrap gap-2'>
                 <Button
-                  label="Continuer en tant qu'invité"
                   classes='whitespace-nowrap w-full'
                   onClick={() => {
                     navigate('confirmation-commande');
                     onClose();
                   }}
-                />
+                >
+                  Continuer en tant qu'invité
+                </Button>
                 <Button
-                  label='Créer un compte'
                   to='/login'
                   classes='bg-gray-300 text-gray-700 whitespace-nowrap w-full'
-                />
+                >
+                  Créer un compte
+                </Button>
               </div>
             </motion.div>
             <motion.div
