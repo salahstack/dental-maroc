@@ -19,11 +19,13 @@ import { Heart, Menu, ShoppingCart, X } from 'lucide-react';
  */
 import { useToggle } from '../../hooks/useToggle';
 import { useCart } from '../../hooks/useCart';
+import { useFavorite } from '../../hooks/useFavorite';
 
 const Header = () => {
   const [isOpen, toggle] = useToggle();
-  const [isCartOpen, toggleCart, closeCart,] = useToggle();
+  const [isCartOpen, toggleCart, closeCart] = useToggle();
   const { cart } = useCart();
+  const { favorites } = useFavorite();
   const lastActiveLink = useRef<HTMLAnchorElement | null>(null);
   const activeBox = useRef<HTMLLIElement | null>(null);
 
@@ -38,7 +40,6 @@ const Header = () => {
   };
 
   useEffect(initActiveBox, []);
-
 
   window.addEventListener('resize', initActiveBox);
 
@@ -92,6 +93,8 @@ const Header = () => {
 
   const cartItems = cart.reduce((count, item) => count + item.quantity, 0);
 
+  const favoriteItems = favorites.length;
+
   return (
     <header className='h-18 border-b border-gray-200 fixed top-0 left-0 w-full flex bg-white z-40'>
       <div className='container h-full flex items-center gap-4 lg:justify-between relative'>
@@ -112,7 +115,6 @@ const Header = () => {
             classes='lg:hidden ml-auto'
             variant='text'
             color='secondary'
-
             onClick={toggle}
             icon={
               isOpen ? <X aria-hidden='true' /> : <Menu aria-hidden='true' />
@@ -191,11 +193,17 @@ const Header = () => {
           <IconButton
             to='/favoris'
             icon={<Heart aria-hidden='true' />}
-            classes='hidden lg:flex'
+            classes='relative hidden lg:flex'
             variant='text'
             color='secondary'
             aria-label='favoris'
-          />
+          >
+            {favoriteItems > 0 && (
+              <span className='absolute w-6 h-6 bg-blue-600 text-white text-sm rounded-full flex items-center justify-center -top-1/2 translate-y-1/2 left-1/2'>
+                {favoriteItems}
+              </span>
+            )}
+          </IconButton>
         </div>
         <Cart
           isOpen={isCartOpen}
