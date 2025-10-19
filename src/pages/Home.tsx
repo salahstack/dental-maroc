@@ -11,6 +11,7 @@ import Image from '../components/ui/Image';
 import InfoCard from '../components/ui/InfoCard';
 import Product from '../components/ui/Product';
 import PageTitle from '../components/ui/PageTitle';
+import Accordion from '../components/Accordion';
 
 /**
  * Interfaces
@@ -18,6 +19,11 @@ import PageTitle from '../components/ui/PageTitle';
 import type { ProductProps } from '../interfaces/products';
 import ProductSkeleton from '../loaders/ProductSkeleton';
 import { useEffect, useState } from 'react';
+
+/**
+ * Constants
+ */
+import { faqData } from '../constants/faq';
 
 const infoCards = [
   {
@@ -345,7 +351,7 @@ const Home = () => {
           </div>
         </div>
       </section>
-      {/* New Arrivals */}
+      {/* New Arrivals Section */}
       <section>
         <div className='container'>
           <div className='flex items-center justify-between mb-6 gap-4'>
@@ -375,6 +381,17 @@ const Home = () => {
                   />
                 ))}
           </div>
+        </div>
+      </section>
+      {/* FAQ Section */}
+      <section>
+        <div className='container'>
+          <h2 className='text-3xl font-bold mb-4 text-center'>Questions fréquentes</h2>
+          <ul className='grid grid-cols-1 gap-4'>
+            {faqData.map((item, index) => (
+              <Accordion key={index} question={item.question} answer={item.answer} />
+            ))}
+          </ul>
         </div>
       </section>
     </>

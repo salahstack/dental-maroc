@@ -179,6 +179,30 @@
   .modal {
     @apply fixed left-1/2 -translate-x-1/2 p-4 rounded-lg bg-white z-50 w-[calc(100%-32px)] max-w-[450px];
   }
+
+  /* Accordion Item */
+  .accordion-item {
+    @apply border border-gray-200 rounded-lg overflow-hidden;
+  }
+
+  .accordion-header {
+    @apply bg-gray-100 p-4 cursor-pointer font-semibold flex justify-between items-center gap-3 w-full text-left;
+  }
+  .accordion-header:active {
+    @apply scale-100;
+  }
+
+  .accordion-body {
+    @apply max-h-0 overflow-hidden transition-[max-height] duration-500;
+  }
+
+  .accordion-item.active .accordion-body {
+    @apply max-h-32;
+  }
+
+  .accordion-content {
+    @apply p-4 text-gray-600 border-t border-gray-200;
+  }
 }
 
 /*--------------------------*\
