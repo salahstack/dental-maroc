@@ -5,7 +5,7 @@ import type { FC } from 'react';
 /**
  * Node modules
  */
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet-async'
 
 
 /**

@@ -21,6 +21,7 @@ const Image: FC<ImageProps> = ({
   height = '',
   classes = '',
   loading = 'lazy',
+  fetchPriority = 'auto',
   ...rest
 }) => {
   return (
@@ -36,6 +37,7 @@ const Image: FC<ImageProps> = ({
           alt={alt}
           className='img-cover'
           loading={loading}
+          {...(fetchPriority ? { fetchpriority: fetchPriority } : {})}
           {...rest}
           decoding='async'
         />
