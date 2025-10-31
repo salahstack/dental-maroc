@@ -10,7 +10,7 @@ import CategoryCard from '../components/ui/CategoryCard';
 import Image from '../components/ui/Image';
 import InfoCard from '../components/ui/InfoCard';
 import Product from '../components/ui/Product';
-import PageTitle from '../components/ui/PageTitle';
+import MetaData from '../components/ui/MetaData';
 import Accordion from '../components/Accordion';
 
 /**
@@ -252,10 +252,81 @@ const Home = () => {
   });
   return (
     <>
-      <PageTitle
+      {/* Meta Data */}
+      <MetaData
         title='Boutique Dentaire | Équipements et Fournitures de Qualité'
-        content='Découvrez notre sélection d’équipements dentaires de qualité : fauteuils, instruments, stérilisateurs et dispositifs d’imagerie. La référence des professionnels dentaires.'
-      />
+        description='Découvrez notre sélection d’équipements dentaires de qualité : fauteuils, instruments, stérilisateurs et dispositifs d’imagerie. La référence des professionnels dentaires.'
+      >
+        {/* Preload Home Image */}
+        <link
+          rel='preload'
+          as='image'
+          href='/images/home-1200.webp'
+          type='image/webp'
+          imageSrcSet='
+            /images/home-400.webp 400w,
+            /images/home-800.webp 800w,
+            /images/home-1200.webp 1200w,
+            /images/home-1600.webp 1600w
+          '
+          imageSizes='(max-width: 768px) 100vw, 50vw'
+          fetchPriority='high'
+        />
+        {/* Open Graph / Facebook */}
+        <meta
+          property='og:title'
+          content='Boutique Dentaire | Équipements et Fournitures de Qualité'
+        />
+        <meta
+          property='og:description'
+          content='Boutique de matériel dentaire de qualité : résines et matériaux, outils et instruments, machines et appareils, consommables'
+        />
+        <meta
+          property='og:type'
+          content='website'
+        />
+        <meta
+          property='og:url'
+          content='https://dental-supply.netlify.app/accueil/'
+        />
+        <meta
+          property='og:image'
+          content='https://dental-supply.netlify.app/images/home-1200.webp'
+        />
+        {/* Twitter Card */}
+        <meta
+          name='twitter:card'
+          content='summary_large_image'
+        />
+        <meta
+          name='twitter:title'
+          content='Boutique Dentaire | Équipements et Fournitures de Qualité'
+        />
+        <meta
+          name='twitter:description'
+          content='Boutique de matériel dentaire de qualité : résines et matériaux, outils et instruments, machines et appareils, consommables'
+        />
+        <meta
+          name='twitter:image'
+          content='https://e-commerce-dental-supply.netlify.app/images/home-1200.webp'
+        />
+        {/* Keywords */}
+        <meta
+          name='keywords'
+          content='matériel dentaire,fournitures dentaires, équipements dentaires, instruments dentaires, fauteuil dentaire, stérilisateur dentaire, radiographie dentaire, autoclave dentaire, produits dentaires professionnels, accessoires dentaires'
+        />
+        {/* Canonical URL */}
+        <link
+          rel='canonical'
+          href='https://dental-supply.netlify.app/accueil/'
+        />
+        {/* Robots */}
+        <meta
+          name='robots'
+          content='index, follow'
+        />
+      </MetaData>
+
       {/* Hero Section */}
       <section>
         <div className='container grid grid-cols-1 md:lg:grid-cols-2 lg:grid-cols-[1.5fr_0.9fr] gap-6 items-center'>
@@ -280,9 +351,9 @@ const Home = () => {
             srcSet='/images/home-400.webp 400w, /images/home-800.webp 800w, /images/home-1200.webp 1200w, /images/home-1600.webp 1600w'
             fallback='/images/home-fallback.png'
             alt='Home'
-            classes='rounded-lg'
-            width='max-lg:w-full max-lg:max-w-sm'
-            height='h-64 lg:h-[400px] square mx-auto'
+            classes='rounded-lg max-lg:w-full max-lg:max-w-sm h-64 lg:h-[400px] square mx-auto'
+            width={1200}
+            height={800}
             loading='eager'
             sizes='(max-width: 768px) 100vw, 50vw'
             fetchPriority='high'
@@ -386,10 +457,16 @@ const Home = () => {
       {/* FAQ Section */}
       <section>
         <div className='container'>
-          <h2 className='text-3xl font-bold mb-4 text-center'>Questions fréquentes</h2>
+          <h2 className='text-3xl font-bold mb-4 text-center'>
+            Questions fréquentes
+          </h2>
           <ul className='grid grid-cols-1 gap-4'>
             {faqData.map((item, index) => (
-              <Accordion key={index} question={item.question} answer={item.answer} />
+              <Accordion
+                key={index}
+                question={item.question}
+                answer={item.answer}
+              />
             ))}
           </ul>
         </div>
