@@ -4,8 +4,8 @@
 import { useState } from 'react';
 import Breadcrumb from '../components/ui/Breadcrumb';
 import DropDown from '../components/ui/DropDown';
-import PageTitle from '../components/ui/PageTitle';
 import Product from '../components/ui/Product';
+import MetaData from '../components/ui/MetaData';
 /**
  * Interfaces
  */
@@ -191,10 +191,12 @@ const Shop = () => {
   };
   return (
     <>
-      <PageTitle
+      <MetaData
         title='Boutique'
-        content='Découvrez notre sélection d’équipements dentaires de qualité.'
-      />
+        description='Découvrez notre sélection d’équipements dentaires de qualité.'
+      >
+
+      </MetaData>
       <section>
         <div className='container'>
           <Breadcrumb />

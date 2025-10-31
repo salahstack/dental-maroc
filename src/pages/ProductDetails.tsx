@@ -8,7 +8,6 @@ import { useState } from 'react';
  * Components
  */
 import Image from '../components/ui/Image';
-import PageTitle from '../components/ui/PageTitle';
 import Button from '../components/ui/Button';
 import Breadcrumb from '../components/ui/Breadcrumb';
 import Quantity from '../components/ui/Quantity';
@@ -24,6 +23,7 @@ import { useCart } from '../hooks/useCart';
  * Interfaces
  */
 import type { ProductProps } from '../interfaces/products';
+import MetaData from '../components/ui/MetaData';
 interface ProductDetailsProps extends ProductProps {
   category: string;
   status: string;
@@ -137,10 +137,23 @@ const ProductDetails = () => {
 
   return (
     <section>
-      <PageTitle
+      <MetaData
         title={title}
-        content={description}
-      />
+        description={description}
+      >
+        {/* Open Graph / Facebook */}
+        <meta property='og:title' content={title} />
+        <meta property='og:description' content={description} />
+        <meta property='og:image' content={image} />
+        <meta property='og:url' content={`https://dental-supply.netlify.app/produits/${id}`} />
+        <meta property='og:type' content='product' />
+        {/* Twitter */}
+        <meta name='twitter:card' content='summary_large_image' />
+        <meta name='twitter:title' content={title} />
+        <meta name='twitter:description' content={description} />
+        <meta name='twitter:image' content={image} />
+
+      </MetaData>
       <div className='container'>
         <Breadcrumb />
         <div className='grid grid-cols-1 md:grid-cols-2 items-center gap-8'>
@@ -148,9 +161,11 @@ const ProductDetails = () => {
             srcSet={image}
             fallback={image}
             alt={title}
-            width='w-full max-w-[400px] lg:w-1/2'
-            height='h-40 md:h-80'
-            classes='rounded-lg mx-auto md:mx-0 md:ml-auto'
+            width={600}
+            height={400}
+            classes='rounded-lg mx-auto md:mx-0 md:ml-auto w-full max-w-[400px] lg:w-1/2 h-40 md:h-80'
+            loading='eager'
+            fetchPriority='high'
           />
           <div className='w-full max-w-[500px] mx-auto'>
             <h1 className='product-title'>{title}</h1>

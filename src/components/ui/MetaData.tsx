@@ -11,18 +11,19 @@ import { Helmet } from 'react-helmet-async'
 /**
  * Interface
  */
-import type { PageTitleProps } from '../../interfaces/page-title';
+import type { MetaDataProps } from '../../interfaces/meta-data';
 
-const PageTitle: FC<PageTitleProps> = ({ title, content }) => {
+const MetaData: FC<MetaDataProps> = ({ title, description, children }) => {
   return (
     <Helmet>
       <title>{title}</title>
       <meta
         name='description'
-        content={content}
+        content={description}
       />
+      {children}
     </Helmet>
   );
 };
 
-export default PageTitle;
+export default MetaData;

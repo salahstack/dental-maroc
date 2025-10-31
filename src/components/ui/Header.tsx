@@ -102,10 +102,11 @@ const Header = () => {
           <Image
             srcSet='/images/logo.svg'
             fallback='/images/logo.svg'
+            classes='w-20'
             alt='logo'
-            width='w-20'
+            width={80}
+            height={80}
             loading='eager'
-            fetchPriority='high'
           />
         </Link>
         {/* Mobile Navigation */}

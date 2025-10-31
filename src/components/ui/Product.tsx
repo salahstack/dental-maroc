@@ -88,9 +88,9 @@ const Product: FC<ProductProps> = ({
           srcSet={image}
           fallback={image}
           alt={title}
-          width='w-full'
-          height='h-40 md:h-48'
-          classes='rounded-tl-lg rounded-tr-lg'
+          width={600}
+          height={400}
+          classes='rounded-tl-lg rounded-tr-lg h-40 md:h-48 w-full'
         />
       </Link>
       <div className='product-content'>
