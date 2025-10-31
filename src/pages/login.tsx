@@ -5,15 +5,19 @@ import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Image from '../components/ui/Image';
 import TextField from '../components/ui/TextField';
-import PageTitle from '../components/ui/PageTitle';
+import MetaData from '../components/ui/MetaData';
 
 const Login = () => {
   return (
     <>
-      <PageTitle
+      <MetaData
         title='Se connecter'
-        content='Connectez-vous à votre compte pour accéder à la plateforme de gestion des ventes dentaires.'
-      />
+        description='Connectez-vous à votre compte pour accéder à la plateforme de gestion des ventes dentaires.'
+      >
+        {/* Preload Login Page */}
+        <link rel="preload" as="image" href="/images/login-banner.webp" type='image/webp' fetchPriority='high' />
+
+      </MetaData>
       <div className='container h-dvh grid grid-cols-1 lg:grid-cols-2 lg:gap-4 py-5'>
         <div className='flex flex-col'>
           <Link
@@ -24,9 +28,10 @@ const Login = () => {
               fallback='/images/logo.svg'
               srcSet='images/logo.svg'
               loading='eager'
+              classes='w-20'
               alt='logo'
-              width='w-20'
-              fetchPriority='high'
+              width={80}
+              height={80}
             />
           </Link>
           <div className='flex flex-col gap-2 w-full max-w-[450px] mx-auto'>
@@ -79,6 +84,8 @@ const Login = () => {
           srcSet='/images/login-banner.webp'
           fallback='/images/login-banner-fallback.jpg'
           alt='login banner'
+          width={850}
+          height={1280}
           classes='hidden lg:block rounded-lg'
           loading='eager'
           fetchPriority='high'

@@ -33,6 +33,8 @@ const InfoCard: FC<InfoCardProps> = ({ smallScreens, largeScreens, altSrc, title
             alt=''
             className=''
             loading='lazy'
+            width={96}
+            height={96}
           />
         </picture>
       </figure>

@@ -25,7 +25,7 @@ const Image: FC<ImageProps> = ({
   ...rest
 }) => {
   return (
-    <figure className={`img-box ${width} ${height} ${classes}`}>
+    <figure className={`img-box ${classes}`}>
       <picture className='h-full'>
         <source
           srcSet={srcSet}
@@ -35,6 +35,8 @@ const Image: FC<ImageProps> = ({
         <img
           src={fallback}
           alt={alt}
+          width={width}
+          height={height}
           className='img-cover'
           loading={loading}
           {...(fetchPriority ? { fetchpriority: fetchPriority } : {})}
@@ -42,6 +44,19 @@ const Image: FC<ImageProps> = ({
           decoding='async'
         />
       </picture>
+      <noscript>
+        <img
+          src={fallback}
+          alt={alt}
+          width={width}
+          height={height}
+          className='img-cover'
+          loading={loading}
+          {...(fetchPriority ? { fetchpriority: fetchPriority } : {})}
+          {...rest}
+          decoding='async'
+        />
+      </noscript>
     </figure>
   );
 };

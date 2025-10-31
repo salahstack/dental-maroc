@@ -5,15 +5,18 @@ import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Image from '../components/ui/Image';
 import TextField from '../components/ui/TextField';
-import PageTitle from '../components/ui/PageTitle';
+import MetaData from '../components/ui/MetaData';
 
 const Register = () => {
   return (
     <>
-      <PageTitle
+      <MetaData
         title='Créer un compte'
-        content='Inscrivez-vous pour accéder à votre espace personnel, gérer vos commandes et profiter de nos services dédiés aux professionnels du secteur dentaire.'
-      />
+        description='Inscrivez-vous pour accéder à votre espace personnel, gérer vos commandes et profiter de nos services dédiés aux professionnels du secteur dentaire.'
+      >
+        {/* Preload Register Page */}
+        <link rel="preload" as="image" href="/images/register-banner.webp" type="image/webp" fetchPriority="high" />
+      </MetaData>
       <div className='container h-dvh grid grid-cols-1 lg:grid-cols-2 lg:gap-4 py-5'>
         <div className='flex flex-col'>
           <Link
@@ -25,8 +28,9 @@ const Register = () => {
               srcSet='images/logo.svg'
               loading='eager'
               alt='logo'
-              width='w-20'
-              fetchPriority='high'
+              classes='w-20'
+              width={80}
+              height={80}
             />
           </Link>
           <div className='flex flex-col gap-2 w-full max-w-[450px] mx-auto'>
@@ -79,6 +83,8 @@ const Register = () => {
           srcSet='images/login-banner.webp'
           fallback='images/login-banner-fallback.jpg'
           alt='banner'
+          width={850}
+          height={1280}
           classes='hidden lg:block rounded-lg'
           loading='eager'
           fetchPriority='high'
