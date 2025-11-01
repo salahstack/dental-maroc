@@ -52,9 +52,9 @@ const Cart: FC<CartProps> = ({ isOpen, onClose }) => {
                   panier
                 </p>
                 <Button
-                variant='filled'
-                color='danger'
-                size='sm'
+                  variant='filled'
+                  color='danger'
+                  size='sm'
                   onClick={clearCart}
                 >
                   Vider le panier
@@ -67,11 +67,11 @@ const Cart: FC<CartProps> = ({ isOpen, onClose }) => {
                 >
                   <Image
                     srcSet={item.image}
-                    classes='rounded-lg'
+                    classes='rounded-lg w-14 h-14'
                     fallback={item.image}
                     alt={item.title}
-                    width='w-14'
-                    height='h-14'
+                    width={600}
+                    height={400}
                   />
                   <div className='flex-1 mx-4'>
                     <h5 className='font-medium text-gray-500 text-sm'>

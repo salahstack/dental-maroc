@@ -30,6 +30,7 @@ import { useFavorite } from '../../hooks/useFavorite';
 const Product: FC<ProductProps> = ({
   image,
   title,
+  slug,
   price,
   description,
   id,
@@ -48,6 +49,7 @@ const Product: FC<ProductProps> = ({
       addToFavorite({
         id,
         title,
+        slug,
         description,
         image,
         price,
@@ -74,13 +76,13 @@ const Product: FC<ProductProps> = ({
       {bestSeller && <span className='badge'>meilleure vente</span>}
       {newArrival && <span className='badge'>nouveau</span>}
       <Link
-        to={`/produit/${id}`}
+        to={`/produits/${slug}`}
         state={{
           section: bestSeller
             ? 'meilleures ventes'
             : newArrival
-            ? 'nouveautés'
-            : 'Products',
+            ? 'nouveaux arrivages'
+            : 'Produits',
           title,
         }}
       >
@@ -95,13 +97,13 @@ const Product: FC<ProductProps> = ({
       </Link>
       <div className='product-content'>
         <Link
-          to={`/produit/${id}`}
+          to={`/produits/${slug}`}
           state={{
             section: bestSeller
-              ? 'Best Sellers'
+              ? 'meilleures ventes'
               : newArrival
-              ? 'New Arrivals'
-              : 'Products',
+              ? 'nouveaux arrivages'
+              : 'Produits',
             title,
           }}
         >
