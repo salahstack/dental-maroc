@@ -60,7 +60,7 @@ const Login = () => {
         <div className='flex flex-col'>
           <Link
             to='/'
-            className='mb-auto mx-auto lg:mx-0'
+            className='mb-auto mx-auto lg:mx-0 active:scale-100'
           >
             <Image
               fallback='/images/logo.svg'
@@ -106,7 +106,7 @@ const Login = () => {
             <p className='text-center mt-2 text-sm'>
               Vous n'avez pas de compte ?{' '}
               <Link
-                to='/register'
+                to='/s-inscrire'
                 className='text-blue-600 hover:underline inline-block'
               >
                 Créez un compte
