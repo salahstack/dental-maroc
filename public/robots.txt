@@ -1,6 +1,9 @@
 # Allow all search engines to crawl everything
 User-agent: *
-Disallow:
+Disallow: /confirmation-commande
+Disallow: /admin
+Disallow: /s-inscrire
+Disallow: /se-connecter
 
 # Sitemap location
-Sitemap: https://yourdomain.com/sitemap.xml
+Sitemap: https://dental-supply-staging.netlify.app/sitemap.xml
