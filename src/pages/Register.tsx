@@ -94,7 +94,7 @@ const Register = () => {
         <div className='flex flex-col'>
           <Link
             to='/'
-            className='mb-auto mx-auto lg:mx-0'
+            className='mb-auto mx-auto lg:mx-0 active:scale-100'
           >
             <Image
               fallback='/images/logo.svg'
@@ -140,7 +140,7 @@ const Register = () => {
             <p className='text-center mt-2 text-sm'>
               Vous avez déjà un compte ?{' '}
               <Link
-                to='/login'
+                to='/se-connecter'
                 className='text-blue-600 hover:underline inline-block'
               >
                 Connectez-vous
