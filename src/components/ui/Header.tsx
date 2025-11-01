@@ -98,7 +98,7 @@ const Header = () => {
   return (
     <header className='h-18 border-b border-gray-200 fixed top-0 left-0 w-full flex bg-white z-40'>
       <div className='container h-full flex items-center gap-4 lg:justify-between relative'>
-        <Link to='/accueil'>
+        <Link to='/accueil' className='active:scale-100'>
           <Image
             srcSet='/images/logo.svg'
             fallback='/images/logo.svg'
