@@ -101,6 +101,7 @@ const bestSellers: ProductProps[] = [
     image:
       'https://images.unsplash.com/photo-1629904853693-ec84a89b2e63?auto=format&fit=crop&w=600&q=80',
     title: 'Premium Dental Chair Unit',
+    slug: 'premium-dental-chair-unit',
     price: 2499,
     description:
       'Ergonomic dental chair with LED operating light and multifunctional delivery system.',
@@ -111,6 +112,7 @@ const bestSellers: ProductProps[] = [
     image:
       'https://images.pexels.com/photos/3845855/pexels-photo-3845855.jpeg?auto=compress&cs=tinysrgb&w=600',
     title: 'Ultrasonic Scaler',
+    slug: 'ultrasonic-scaler',
     price: 499,
     description:
       'High-frequency ultrasonic scaler for efficient plaque and tartar removal.',
@@ -121,6 +123,7 @@ const bestSellers: ProductProps[] = [
     image:
       'https://images.pexels.com/photos/4226769/pexels-photo-4226769.jpeg?auto=compress&cs=tinysrgb&w=600',
     title: 'Class B Autoclave Sterilizer',
+    slug: 'class-b-autoclave-sterilizer',
     price: 1899,
     description:
       'Fully automatic steam sterilizer with advanced safety features for dental instruments.',
@@ -131,6 +134,7 @@ const bestSellers: ProductProps[] = [
     image:
       'https://images.unsplash.com/photo-1629904853714-3f7a64de03f3?auto=format&fit=crop&w=600&q=80',
     title: 'High Speed Handpiece',
+    slug: 'high-speed-handpiece',
     price: 299,
     description:
       'Durable turbine handpiece with ceramic bearings for precision cutting.',
@@ -141,6 +145,7 @@ const bestSellers: ProductProps[] = [
     image:
       'https://images.pexels.com/photos/3845769/pexels-photo-3845769.jpeg?auto=compress&cs=tinysrgb&w=600',
     title: 'Intraoral Camera',
+    slug: 'intraoral-camera',
     price: 699,
     description:
       'HD intraoral camera with USB connection for patient education and case documentation.',
@@ -151,6 +156,7 @@ const bestSellers: ProductProps[] = [
     image:
       'https://images.pexels.com/photos/4269363/pexels-photo-4269363.jpeg?auto=compress&cs=tinysrgb&w=600',
     title: 'Complete Orthodontic Kit',
+    slug: 'complete-orthodontic-kit',
     price: 399,
     description:
       'Comprehensive set including brackets, wires, and tools for orthodontic procedures.',
@@ -161,6 +167,7 @@ const bestSellers: ProductProps[] = [
     image:
       'https://images.pexels.com/photos/6812527/pexels-photo-6812527.jpeg?auto=compress&cs=tinysrgb&w=600',
     title: 'Digital X-Ray Sensor',
+    slug: 'digital-x-ray-sensor',
     price: 1499,
     description:
       'CMOS intraoral digital X-ray sensor with high resolution and low radiation exposure.',
@@ -168,12 +175,14 @@ const bestSellers: ProductProps[] = [
   },
 ];
 
+
 const newArrivals: ProductProps[] = [
   {
     id: 1,
     image:
       'https://images.unsplash.com/photo-1629904853693-ec84a89b2e63?auto=format&fit=crop&w=600&q=80',
     title: 'Premium Dental Chair Unit',
+    slug: 'premium-dental-chair-unit',
     price: 2499,
     description:
       'Ergonomic dental chair with LED operating light and multifunctional delivery system.',
@@ -184,6 +193,7 @@ const newArrivals: ProductProps[] = [
     image:
       'https://images.pexels.com/photos/3845855/pexels-photo-3845855.jpeg?auto=compress&cs=tinysrgb&w=600',
     title: 'Ultrasonic Scaler',
+    slug: 'ultrasonic-scaler',
     price: 499,
     description:
       'High-frequency ultrasonic scaler for efficient plaque and tartar removal.',
@@ -194,6 +204,7 @@ const newArrivals: ProductProps[] = [
     image:
       'https://images.pexels.com/photos/4226769/pexels-photo-4226769.jpeg?auto=compress&cs=tinysrgb&w=600',
     title: 'Class B Autoclave Sterilizer',
+    slug: 'class-b-autoclave-sterilizer',
     price: 1899,
     description:
       'Fully automatic steam sterilizer with advanced safety features for dental instruments.',
@@ -204,6 +215,7 @@ const newArrivals: ProductProps[] = [
     image:
       'https://images.unsplash.com/photo-1629904853714-3f7a64de03f3?auto=format&fit=crop&w=600&q=80',
     title: 'High Speed Handpiece',
+    slug: 'high-speed-handpiece',
     price: 299,
     description:
       'Durable turbine handpiece with ceramic bearings for precision cutting.',
@@ -214,6 +226,7 @@ const newArrivals: ProductProps[] = [
     image:
       'https://images.pexels.com/photos/3845769/pexels-photo-3845769.jpeg?auto=compress&cs=tinysrgb&w=600',
     title: 'Intraoral Camera',
+    slug: 'intraoral-camera',
     price: 699,
     description:
       'HD intraoral camera with USB connection for patient education and case documentation.',
@@ -224,6 +237,7 @@ const newArrivals: ProductProps[] = [
     image:
       'https://images.pexels.com/photos/4269363/pexels-photo-4269363.jpeg?auto=compress&cs=tinysrgb&w=600',
     title: 'Complete Orthodontic Kit',
+    slug: 'complete-orthodontic-kit',
     price: 399,
     description:
       'Comprehensive set including brackets, wires, and tools for orthodontic procedures.',
@@ -234,12 +248,14 @@ const newArrivals: ProductProps[] = [
     image:
       'https://images.pexels.com/photos/6812527/pexels-photo-6812527.jpeg?auto=compress&cs=tinysrgb&w=600',
     title: 'Digital X-Ray Sensor',
+    slug: 'digital-x-ray-sensor',
     price: 1499,
     description:
       'CMOS intraoral digital X-ray sensor with high resolution and low radiation exposure.',
     newArrival: true,
   },
 ];
+
 
 const Home = () => {
   const [products, setProducts] = useState<ProductProps[] | null>(null);
@@ -308,8 +324,21 @@ const Home = () => {
         />
         <meta
           name='twitter:image'
-          content='https://e-commerce-dental-supply.netlify.app/images/home-1200.webp'
+          content='https://dental-supply.netlify.app/images/home-1200.webp'
         />
+        <meta
+          name='twitter:site'
+          content='@DentalSupply'
+        />
+        <meta
+          name='twitter:creator'
+          content='@DentalSupply'
+        />
+        <meta
+          name='twitter:type'
+          content='website'
+        />
+        <meta name='twitter:url' content='https://dental-supply.netlify.app/accueil/' />
         {/* Keywords */}
         <meta
           name='keywords'
@@ -340,9 +369,9 @@ const Home = () => {
               parfaits.
             </p>
             <Button
-              to='/shop'
+              to='/boutique'
               classes='mt-6'
-              state={{ section: 'shop' }}
+              state={{ section: 'boutique' }}
             >
               acheter maintenant
             </Button>
@@ -400,7 +429,7 @@ const Home = () => {
           <div className='flex items-center justify-between mb-6 gap-4'>
             <h2 className='text-3xl font-bold'>Meilleures ventes</h2>
             <Link
-              to='/meilleures ventes'
+              to='/meilleures-ventes'
               state={{ section: 'meilleures ventes' }}
               className='font-medium text-blue-600 transition hover:underline whitespace-nowrap'
             >
@@ -414,6 +443,7 @@ const Home = () => {
                 id={product.id}
                 image={product.image}
                 title={product.title}
+                slug={product.slug}
                 price={product.price}
                 description={product.description}
                 bestSeller={product.bestSeller}
@@ -426,10 +456,10 @@ const Home = () => {
       <section>
         <div className='container'>
           <div className='flex items-center justify-between mb-6 gap-4'>
-            <h2 className='text-3xl font-bold'>Nouveautés</h2>
+            <h2 className='text-3xl font-bold'>Nouveaux Arrivages</h2>
             <Link
-              to='/nouveautés'
-              state={{ section: 'nouveautés' }}
+              to='/nouveaux-arrivages'
+              state={{ section: 'nouveaux arrivages' }}
               className='font-medium text-blue-600 transition hover:underline whitespace-nowrap'
             >
               Voir toutes
@@ -446,6 +476,7 @@ const Home = () => {
                     id={product.id}
                     image={product.image}
                     title={product.title}
+                    slug={product.slug}
                     price={product.price}
                     description={product.description}
                     newArrival={product.newArrival}

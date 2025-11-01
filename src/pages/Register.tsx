@@ -15,7 +15,80 @@ const Register = () => {
         description='Inscrivez-vous pour accéder à votre espace personnel, gérer vos commandes et profiter de nos services dédiés aux professionnels du secteur dentaire.'
       >
         {/* Preload Register Page */}
-        <link rel="preload" as="image" href="/images/register-banner.webp" type="image/webp" fetchPriority="high" />
+        <link
+          rel='preload'
+          as='image'
+          href='/images/register-banner.webp'
+          type='image/webp'
+          fetchPriority='high'
+        />
+        {/* Open Graph / Facebook */}
+        <meta
+          property='og:title'
+          content='Créer un compte'
+        />
+        <meta
+          property='og:description'
+          content='Inscrivez-vous pour accéder à votre espace personnel, gérer vos commandes et profiter de nos services dédiés aux professionnels du secteur dentaire.'
+        />
+        <meta
+          property='og:image'
+          content='https://dental-supply.netlify.app/images/login-banner.webp'
+        />
+        <meta
+          property='og:url'
+          content='https://dental-supply.netlify.app/s-inscrire'
+        />
+        <meta
+          property='og:type'
+          content='website'
+        />
+
+        {/* Twitter Card */}
+        <meta
+          name='twitter:card'
+          content='summary_large_image'
+        />
+        <meta
+          name='twitter:title'
+          content='Créer un compte'
+        />
+        <meta
+          name='twitter:description'
+          content='Inscrivez-vous pour accéder à votre espace personnel, gérer vos commandes et profiter de nos services dédiés aux professionnels du secteur dentaire.'
+        />
+        <meta
+          name='twitter:url'
+          content='https://dental-supply.netlify.app/s-inscrire'
+        />
+        <meta
+          name='twitter:image'
+          content='https://dental-supply.netlify.app/images/login-banner.webp'
+        />
+        <meta
+          name='twitter:site'
+          content='@dentalSupply'
+        />
+        <meta
+          name='twitter:creator'
+          content='@dentalSupply'
+        />
+        <meta name='twitter:type' content='website' />
+        {/* Robots */}
+        <meta
+          name='robots'
+          content='noindex, follow'
+        />
+        {/* Keywords */}
+        <meta
+          name='keywords'
+          content='Créer un compte, Inscription, Espace personnel, Gestion des commandes, Services dentaires'
+        />
+        {/* Canonical URL */}
+        <link
+          rel='canonical'
+          href='https://dental-supply.netlify.app/s-inscrire'
+        />
       </MetaData>
       <div className='container h-dvh grid grid-cols-1 lg:grid-cols-2 lg:gap-4 py-5'>
         <div className='flex flex-col'>

@@ -145,13 +145,13 @@ const Header = () => {
             </ul>
             <div className='mt-2 lg:hidden'>
               <Link
-                to='/login'
+                to='/se-connecter'
                 className='nav-link'
               >
                 Se connecter
               </Link>
               <Link
-                to='/register'
+                to='/s-inscrire'
                 className='nav-link'
               >
                 S'inscrire
@@ -162,13 +162,13 @@ const Header = () => {
         <div className='flex items-center gap-2 max-lg:ml-auto'>
           <nav className='items-center gap-2 hidden lg:flex'>
             <Link
-              to='/login'
+              to='/se-connecter'
               className='nav-link'
             >
               Se connecter
             </Link>
             <Link
-              to='/register'
+              to='/s-inscrire'
               className='nav-link'
             >
               S'inscrire

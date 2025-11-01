@@ -26,11 +26,11 @@ import Layout from '../Layouts/Layout';
 
 const router = createBrowserRouter([
   {
-    path: 'register',
+    path: 's-inscrire',
     Component: Register,
   },
   {
-    path: 'login',
+    path: 'se-connecter',
     Component: Login,
   },
   {
@@ -51,19 +51,19 @@ const router = createBrowserRouter([
         Component: Home,
       },
       {
-        path: 'produit/:id',
+        path: 'produits/:slug',
         Component: ProductDetails,
       },
       {
-        path: 'meilleures ventes',
+        path: 'meilleures-ventes',
         Component: BestSellers,
       },
       {
-        path: 'nouveautés',
+        path: 'nouveaux-arrivages',
         Component: NewArrivals,
       },
       {
-        path: 'shop',
+        path: 'boutique',
         Component: Shop,
       },
       {
