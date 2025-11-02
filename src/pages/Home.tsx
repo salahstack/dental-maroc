@@ -303,11 +303,11 @@ const Home = () => {
         />
         <meta
           property='og:url'
-          content='https://dental-supply.netlify.app/accueil/'
+          content='https://dentalmaroc.netlify.app/accueil/'
         />
         <meta
           property='og:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         {/* Twitter Card */}
         <meta
@@ -324,7 +324,7 @@ const Home = () => {
         />
         <meta
           name='twitter:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         <meta
           name='twitter:site'
@@ -338,7 +338,7 @@ const Home = () => {
           name='twitter:type'
           content='website'
         />
-        <meta name='twitter:url' content='https://dental-supply.netlify.app/accueil/' />
+        <meta name='twitter:url' content='https://dentalmaroc.netlify.app/accueil/' />
         {/* Keywords */}
         <meta
           name='keywords'
@@ -347,7 +347,7 @@ const Home = () => {
         {/* Canonical URL */}
         <link
           rel='canonical'
-          href='https://dental-supply.netlify.app/accueil/'
+          href='https://dentalmaroc.netlify.app/accueil/'
         />
         {/* Robots */}
         <meta

@@ -111,11 +111,11 @@ const BestSellers = () => {
         />
         <meta
           property='og:url'
-          content='https://dental-supply.netlify.app/meilleures-ventes'
+          content='https://dentalmaroc.netlify.app/meilleures-ventes'
         />
         <meta
           property='og:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='https://dentalmaroc.netlify.app/images/home-1200.webp'
         />
         {/* Twitter Card */}
         <meta
@@ -140,11 +140,11 @@ const BestSellers = () => {
         />
         <meta
           name='twitter:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         <meta
           name='twitter:url'
-          content='https://dental-supply.netlify.app/meilleures-ventes'
+          content='https://dentalmaroc.netlify.app/meilleures-ventes'
         />
         <meta
           name='twitter:type'
@@ -153,7 +153,7 @@ const BestSellers = () => {
         {/* Canonical URL */}
         <link
           rel='canonical'
-          href='https://dental-supply.netlify.app/meilleures-ventes'
+          href='https://dentalmaroc.netlify.app/meilleures-ventes'
         />
         {/* Robots */}
         <meta

@@ -24,11 +24,11 @@ const Login = () => {
         />
         <meta property='og:type' content='website' />
         <meta
-          property='og:url' content='https://dental-supply.netlify.app/se-connecter'
+          property='og:url' content='https://dentalmaroc.netlify.app/se-connecter'
         />
         <meta
           property='og:image'
-          content='https://dental-supply.netlify.app/images/login-banner.webp'
+          content='/images/login-banner.webp'
         />
         {/* Twitter Card */}
         <meta name='twitter:title' content='Se connecter - Dental Supply' />
@@ -36,20 +36,20 @@ const Login = () => {
           name='twitter:description'
           content='Connectez-vous à votre compte pour accéder à la plateforme de gestion des ventes dentaires.'
         />
-        <meta name='twitter:image' content='https://dental-supply.netlify.app/images/login-banner.webp' />
+        <meta name='twitter:image' content='/images/login-banner.webp' />
         <meta name='twitter:site' content='@DentalSupply' />
         <meta name='twitter:creator' content='@DentalSupply' />
         <meta name='twitter:card' content='summary_large_image' />
         <meta
           name='twitter:url'
-          content='https://dental-supply.netlify.app/se-connecter'
+          content='https://dentalmaroc.netlify.app/se-connecter'
         />
 
         <meta name='twitter:type' content='website' />
         {/* Canonical URL */}
         <link
           rel='canonical'
-          href='https://dental-supply.netlify.app/se-connecter'
+          href='https://dentalmaroc.netlify.app/se-connecter'
         />
         {/* Robots */}
         <meta name='robots' content='noindex, follow' />

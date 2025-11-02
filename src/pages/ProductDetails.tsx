@@ -163,7 +163,7 @@ const ProductDetails = () => {
         />
         <meta
           property='og:url'
-          content={`https://dental-supply.netlify.app/produits/${title}`}
+          content={`https://dentalmaroc.netlify.app/produits/${title}`}
         />
         <meta
           property='og:type'
@@ -188,7 +188,7 @@ const ProductDetails = () => {
         />
         <meta
           name='twitter:url'
-          content={`https://dental-supply.netlify.app/produits/${title}`}
+          content={`https://dentalmaroc.netlify.app/produits/${title}`}
         />
         <meta
           name='twitter:creator'
@@ -210,7 +210,7 @@ const ProductDetails = () => {
         {/* Canonical URL */}
         <link
           rel='canonical'
-          href={`https://dental-supply.netlify.app/produits/${title}`}
+          href={`https://dentalmaroc.netlify.app/produits/${title}`}
         />
         {/* Robots */}
         <meta

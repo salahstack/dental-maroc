@@ -33,11 +33,11 @@ const Register = () => {
         />
         <meta
           property='og:image'
-          content='https://dental-supply.netlify.app/images/login-banner.webp'
+          content='https://dentalmaroc.netlify.app/images/login-banner.webp'
         />
         <meta
           property='og:url'
-          content='https://dental-supply.netlify.app/s-inscrire'
+          content='https://dentalmaroc.netlify.app/s-inscrire'
         />
         <meta
           property='og:type'
@@ -59,11 +59,11 @@ const Register = () => {
         />
         <meta
           name='twitter:url'
-          content='https://dental-supply.netlify.app/s-inscrire'
+          content='https://dentalmaroc.netlify.app/s-inscrire'
         />
         <meta
           name='twitter:image'
-          content='https://dental-supply.netlify.app/images/login-banner.webp'
+          content='https://dentalmaroc.netlify.app/images/login-banner.webp'
         />
         <meta
           name='twitter:site'
@@ -87,7 +87,7 @@ const Register = () => {
         {/* Canonical URL */}
         <link
           rel='canonical'
-          href='https://dental-supply.netlify.app/s-inscrire'
+          href='https://dentalmaroc.netlify.app/s-inscrire'
         />
       </MetaData>
       <div className='container h-dvh grid grid-cols-1 lg:grid-cols-2 lg:gap-4 py-5'>

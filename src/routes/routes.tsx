@@ -55,6 +55,10 @@ const router = createBrowserRouter([
         Component: ProductDetails,
       },
       {
+        path: ':category/:slug',
+        Component: ProductDetails,
+      },
+      {
         path: 'meilleures-ventes',
         Component: BestSellers,
       },
