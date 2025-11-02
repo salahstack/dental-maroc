@@ -189,7 +189,7 @@ const Header = () => {
                 </span>
               )}
             </IconButton>
-            <span className='font-medium'>{totalPrice} DH</span>
+            <span className='font-medium whitespace-nowrap'>{totalPrice} DH</span>
           </div>
           <IconButton
             to='/favoris'

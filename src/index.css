@@ -123,7 +123,7 @@
 
   /** Nav Link  **/
   .nav-link {
-    @apply text-gray-700 hover:text-blue-600 transition px-3 py-2 rounded-md text-sm font-medium;
+    @apply text-gray-700 hover:text-blue-600 transition px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap;
   }
   /**  Active Nav Link  **/
 
