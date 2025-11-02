@@ -29,12 +29,13 @@ import { useToggle } from '../hooks/useToggle';
 const Accordion: FC<AccordionProps> = ({ question, answer }) => {
   const [isOpen, toggle] = useToggle();
   return (
-    <div className={`accordion-item ${isOpen && 'active'}`} aria-expanded={isOpen}>
+    <li className={`accordion-item ${isOpen && 'active'}`}>
       <div
         className='accordion-header'
         onClick={toggle}
         role='button'
         tabIndex={0}
+        aria-expanded={isOpen}
       >
         <h3>{question}</h3>
         <IconButton
@@ -52,7 +53,7 @@ const Accordion: FC<AccordionProps> = ({ question, answer }) => {
       <div className={`accordion-body`}>
         <p className='accordion-content'>{answer}</p>
       </div>
-    </div>
+    </li>
   );
 };
 
