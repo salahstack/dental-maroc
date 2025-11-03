@@ -115,7 +115,7 @@ const NewArrivals = () => {
         />
         <meta
           property='og:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         {/* Twitter Card */}
         <meta
@@ -132,7 +132,7 @@ const NewArrivals = () => {
         />
         <meta
           name='twitter:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         <meta
           name='twitter:site'

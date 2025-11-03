@@ -29,11 +29,11 @@ const ConfirmOrder = () => {
         />
         <meta
           property='og:url'
-          content='https://dental-supply.netlify.app/confirmation-commande'
+          content='https://dentalmaroc.netlify.app/confirmation-commande'
         />
         <meta
           property='og:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         {/* Twitter Card */}
 
@@ -51,7 +51,7 @@ const ConfirmOrder = () => {
         />
         <meta
           name='twitter:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         <meta
           name='twitter:site'
@@ -61,12 +61,12 @@ const ConfirmOrder = () => {
           name='twitter:creator'
           content='@DentalSupply'
         />
-        <meta name='twitter:url' content='https://dental-supply.netlify.app/confirmation-commande' />
+        <meta name='twitter:url' content='https://dentalmaroc.netlify.app/confirmation-commande' />
         <meta name='twitter:type' content='website' />
         {/* Canonical URL */}
         <link
           rel='canonical'
-          href='https://dental-supply.netlify.app/confirmation-commande'
+          href='https://dentalmaroc.netlify.app/confirmation-commande'
         />
         {/* Keywords */}
         <meta

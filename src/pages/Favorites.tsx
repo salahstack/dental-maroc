@@ -31,11 +31,11 @@ const Favorites = () => {
         />
         <meta
           property='og:url'
-          content='https://dental-supply.netlify.app/favoris'
+          content='https://dentalmaroc.netlify.app/favoris'
         />
         <meta
           property='og:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         {/* Twitter Card */}
         <meta
@@ -60,17 +60,17 @@ const Favorites = () => {
         />
         <meta
           name='twitter:url'
-          content='https://dental-supply.netlify.app/favoris'
+          content='https://dentalmaroc.netlify.app/favoris'
         />
         <meta
           name='twitter:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         <meta name='twitter:type' content='website' />
         {/* Canonical URL */}
         <link
           rel='canonical'
-          href='https://dental-supply.netlify.app/favoris'
+          href='https://dentalmaroc.netlify.app/favoris'
         />
         {/* Robots */}
         <meta name='robots' content='noindex, follow' />

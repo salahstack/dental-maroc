@@ -224,11 +224,11 @@ const Shop = () => {
         />
         <meta
           property='og:url'
-          content='https://dental-supply.netlify.app/boutique'
+          content='https://dentalmaroc.netlify.app/boutique'
         />
         <meta
           property='og:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         {/* Twitter Card */}
         <meta
@@ -245,11 +245,11 @@ const Shop = () => {
         />
         <meta
           name='twitter:image'
-          content='https://dental-supply.netlify.app/images/home-1200.webp'
+          content='/images/home-1200.webp'
         />
         <meta
           name='twitter:url'
-          content='https://dental-supply.netlify.app/boutique'
+          content='https://dentalmaroc.netlify.app/boutique'
         />
         <meta
           name='twitter:site'
@@ -271,7 +271,7 @@ const Shop = () => {
         {/* Canonical URL */}
         <link
           rel='canonical'
-          href='https://dental-supply.netlify.app/boutique'
+          href='https://dentalmaroc.netlify.app/boutique'
         />
         {/* Keywords */}
         <meta
