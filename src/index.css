@@ -128,10 +128,7 @@
   /**  Active Nav Link  **/
 
   .nav-link.active {
-    @apply text-white duration-500;
-  }
-  .active-box {
-    @apply absolute bg-blue-600 rounded-lg -z-10 transition-[top,left] duration-500;
+    @apply text-white duration-500 bg-blue-600;
   }
 
   /** Category Card  **/

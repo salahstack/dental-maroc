@@ -1,9 +1,7 @@
 /**
  * Node modules
  */
-import { Link } from 'react-router-dom';
-import type { MouseEvent } from 'react';
-import { useEffect, useRef } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 /**
  * Components
  */
@@ -26,63 +24,28 @@ const Header = () => {
   const [isCartOpen, toggleCart, closeCart] = useToggle();
   const { cart } = useCart();
   const { favorites } = useFavorite();
-  const lastActiveLink = useRef<HTMLAnchorElement | null>(null);
-  const activeBox = useRef<HTMLLIElement | null>(null);
 
-  const initActiveBox = () => {
-    if (activeBox.current && lastActiveLink.current) {
-      activeBox.current.style.top = lastActiveLink.current.offsetTop + 'px';
-      activeBox.current.style.left = lastActiveLink.current.offsetLeft + 'px';
-      activeBox.current.style.width = lastActiveLink.current.offsetWidth + 'px';
-      activeBox.current.style.height =
-        lastActiveLink.current.offsetHeight + 'px';
-    }
-  };
-
-  useEffect(initActiveBox, []);
-
-  window.addEventListener('resize', initActiveBox);
-
-  const activeCurrentLink = (event: MouseEvent<HTMLAnchorElement>) => {
-    lastActiveLink.current?.classList.remove('active');
-    const target = event.target as HTMLAnchorElement;
-    target.classList.add('active');
-    lastActiveLink.current = target;
-
-    if (activeBox.current) {
-      activeBox.current.style.top = target.offsetTop + 'px';
-      activeBox.current.style.left = target.offsetLeft + 'px';
-      activeBox.current.style.width = target.offsetWidth + 'px';
-      activeBox.current.style.height = target.offsetHeight + 'px';
-    }
-  };
 
   const navItems = [
     {
       label: 'Accueil',
-      link: '#home',
-      className: 'nav-link active',
-      ref: lastActiveLink,
+      link: 'accueil',
     },
     {
-      label: 'Shop',
-      link: '#shop',
-      className: 'nav-link',
+      label: 'Boutique',
+      link: 'boutique',
     },
     {
       label: 'À propos',
-      link: '#about',
-      className: 'nav-link',
+      link: 'a-propos',
     },
     {
       label: 'Contact',
-      link: '#contact',
-      className: 'nav-link',
+      link: 'contact',
     },
     {
       label: 'Favoris',
-      link: '#favorites',
-      className: 'nav-link',
+      link: 'favoris',
     },
   ];
 
@@ -123,25 +86,18 @@ const Header = () => {
           />
           <nav className={`navbar ${isOpen ? 'active' : ''}`}>
             <ul className='flex flex-col lg:flex-row lg:items-center'>
-              {navItems.map(({ label, link, className, ref }, key) => {
+              {navItems.map(({ label, link }, key) => {
                 return (
                   <li key={key}>
-                    <a
-                      href={link}
-                      className={className}
-                      onClick={activeCurrentLink}
-                      ref={ref}
+                    <NavLink
+                      to={link}
+                      className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
                     >
                       {label}
-                    </a>
+                    </NavLink>
                   </li>
                 );
               })}
-              <li
-                aria-hidden='true'
-                className='active-box'
-                ref={activeBox}
-              ></li>
             </ul>
             <div className='mt-2 lg:hidden'>
               <Link
