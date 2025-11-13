@@ -1,5 +1,18 @@
+/**
+ * Node modules
+ */
 import { Link } from 'react-router-dom';
+/**
+ * Hooks
+ */
 import { useCart } from '../hooks/useCart';
+/**
+ * Constants
+ */
+import storePhoneNumber from '../constants/storePhoneNumber';
+/**
+ * Components
+ */
 import TextField from '../components/ui/TextField';
 import Image from '../components/ui/Image';
 import Button from '../components/ui/Button';
@@ -7,6 +20,32 @@ import MetaData from '../components/ui/MetaData';
 
 const ConfirmOrder = () => {
   const { cart } = useCart();
+
+  
+  const handleOrder = () => {
+    let orderText = `🦷 *Nouvelle commande Dental Maroc* 🦷\n\n`;
+    orderText += `👤 Nom: salaheddine mjydila\n`;
+    orderText += `📞 Téléphone: ${storePhoneNumber}\n`;
+    orderText += `📍 Adresse: maroc\n\n`;
+    orderText += `🛒 *Détails de la commande:*\n`;
+
+    cart.forEach((item, index) => {
+      orderText += `- ${index + 1} ${item.title} (Quantité: ${
+        item.quantity
+      }) - ${item.price} DH\n`;
+    });
+
+    orderText += `\n💰 *Total de la commande:* ${cart.reduce(
+      (acc, item) => acc + item.price * item.quantity,
+      0
+    )} DH\n`;
+    orderText += `\nMerci pour votre achat ! 🎉`;
+
+    const whatsappUrl = `https://wa.me/${storePhoneNumber}?text=${encodeURIComponent(
+      orderText
+    )}`;
+    window.open(whatsappUrl, '_blank');
+  };
 
   return (
     <>
@@ -61,8 +100,14 @@ const ConfirmOrder = () => {
           name='twitter:creator'
           content='@DentalSupply'
         />
-        <meta name='twitter:url' content='https://dentalmaroc.netlify.app/confirmation-commande' />
-        <meta name='twitter:type' content='website' />
+        <meta
+          name='twitter:url'
+          content='https://dentalmaroc.netlify.app/confirmation-commande'
+        />
+        <meta
+          name='twitter:type'
+          content='website'
+        />
         {/* Canonical URL */}
         <link
           rel='canonical'
@@ -146,27 +191,30 @@ const ConfirmOrder = () => {
                 label='Nom complet'
                 name='fullName'
                 placeholder='Entrez votre nom complet'
-                required
+                // required
               />
               <TextField
                 label='Adresse de livraison'
                 name='address'
                 placeholder='Entrez votre adresse de livraison'
-                required
+                // required
               />
               <TextField
                 label='Numéro de téléphone'
                 name='phone'
                 placeholder='Entrez votre numéro de téléphone'
-                required
+                // required
               />
               <TextField
                 label='Adresse e-mail'
                 name='email'
                 placeholder='Entrez votre adresse e-mail'
-                required
+                // required
               />
-              <Button classes='mt-4 w-full bg-blue-600 text-white'>
+              <Button
+                classes='mt-4 w-full bg-blue-600 text-white'
+                onClick={handleOrder}
+              >
                 Confirmer la commande
               </Button>
             </form>

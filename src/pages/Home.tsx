@@ -303,7 +303,7 @@ const Home = () => {
         />
         <meta
           property='og:url'
-          content='https://dentalmaroc.netlify.app/accueil/'
+          content='https://dentalmaroc.netlify.app'
         />
         <meta
           property='og:image'
