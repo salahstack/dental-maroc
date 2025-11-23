@@ -217,6 +217,16 @@ const ProductDetails = () => {
           name='robots'
           content='index, follow'
         />
+        {/* Structured Data */}
+        <script type='application/ld+json'>
+          {
+            JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'webSite',
+              'name':
+            })
+          }
+        </script>
       </MetaData>
       <div className='container'>
         <Breadcrumb />

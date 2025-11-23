@@ -278,6 +278,39 @@ const Shop = () => {
           name='keywords'
           content='boutique, équipements dentaires, fournitures dentaires, matériel dentaire'
         />
+        {/* Structured data */}
+        <script type='application/ld+json'>
+          {
+            JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'collectionPage',
+              'name': 'Produits',
+              'url': 'https://dentalmaroc.netlify.app/boutique'
+            })
+          }
+        </script>
+        <script type='application/ld+json'>
+          {
+            JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'BreadcrumbList',
+              'itemListElement': [
+                {
+                  '@type': 'ListItem',
+                  'position': 1,
+                  'name': 'Accueil',
+                  'item': 'https://dentalmaroc.netlify.app/accueil'
+                },
+                {
+                  '@type': 'ListItem',
+                  'position': 2,
+                  'name': 'Boutique',
+                  'item': 'https://dentalmaroc.netlify.app/boutique'
+                }
+              ]
+            })
+          }
+        </script>
       </MetaData>
       <section>
         <div className='container'>

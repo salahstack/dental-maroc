@@ -303,11 +303,11 @@ const Home = () => {
         />
         <meta
           property='og:url'
-          content='https://dentalmaroc.netlify.app'
+          content='https://dentalmaroc.netlify.app/accueil'
         />
         <meta
           property='og:image'
-          content='/images/home-1200.webp'
+          content='https://dentalmaroc.netlify.app/images/home-1200.webp'
         />
         {/* Twitter Card */}
         <meta
@@ -324,7 +324,7 @@ const Home = () => {
         />
         <meta
           name='twitter:image'
-          content='/images/home-1200.webp'
+          content='https://dentalmaroc.netlify.app/images/home-1200.webp'
         />
         <meta
           name='twitter:site'
@@ -338,7 +338,7 @@ const Home = () => {
           name='twitter:type'
           content='website'
         />
-        <meta name='twitter:url' content='https://dentalmaroc.netlify.app/accueil/' />
+        <meta name='twitter:url' content='https://dentalmaroc.netlify.app/accueil' />
         {/* Keywords */}
         <meta
           name='keywords'
@@ -347,13 +347,58 @@ const Home = () => {
         {/* Canonical URL */}
         <link
           rel='canonical'
-          href='https://dentalmaroc.netlify.app/accueil/'
+          href='https://dentalmaroc.netlify.app/accueil'
         />
         {/* Robots */}
         <meta
           name='robots'
           content='index, follow'
         />
+        {/* Structred Data */}
+        <script type='application/ld+json'>
+          {
+            JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'webSite',
+              'name': 'Dental Maroc',
+              'url': 'https://dentalmaroc.netlify.app/accueil'
+            })
+          }
+        </script>
+        <script type='application/ld+json'>
+          {
+            JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'Store',
+              'name': 'Dental Maroc',
+              'description': 'Boutique de matériel dentaire professionnel au Maroc',
+              'url': 'https://dentalmaroc.netlify.app/accueil',
+              'image': 'https://dentalmaroc.netlify.app/images/home-1200.webp',
+              'logo': 'https://dentalmaroc.netlify.app/images/logo.svg',
+              'address': {
+                '@type': 'PostalAddress',
+                'adressCountry': 'MA'
+              }
+            })
+          }
+        </script>
+
+        <script type='application/ld+json'>
+        {
+          JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            'itemListElement': [
+              {
+                '@type': 'ListItem',
+                'position': 1,
+                'name': 'Accueil',
+                'item': 'https://dentalmaroc.netlify.app/accueil'
+              }
+            ]
+          })
+        }
+        </script>
       </MetaData>
 
       {/* Hero Section */}
