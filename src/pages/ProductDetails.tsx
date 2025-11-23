@@ -223,7 +223,6 @@ const ProductDetails = () => {
             JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'webSite',
-              'name':
             })
           }
         </script>
