@@ -73,7 +73,10 @@ const Register = () => {
           name='twitter:creator'
           content='@dentalSupply'
         />
-        <meta name='twitter:type' content='website' />
+        <meta
+          name='twitter:type'
+          content='website'
+        />
         {/* Robots */}
         <meta
           name='robots'
@@ -93,18 +96,18 @@ const Register = () => {
       <div className='container h-dvh grid grid-cols-1 lg:grid-cols-2 lg:gap-4 py-5'>
         <div className='flex flex-col'>
           <Link
-            to='/'
-            className='mb-auto mx-auto lg:mx-0 active:scale-100'
+            to='/accueil'
+            className='active:scale-100 flex items-center gap-1 mb-auto mx-auto lg:mx-0'
           >
             <Image
+              srcSet='/images/logo.svg'
               fallback='/images/logo.svg'
-              srcSet='images/logo.svg'
-              loading='eager'
               alt='logo'
-              classes='w-20'
-              width={80}
-              height={80}
+              width={64}
+              height={64}
+              loading='eager'
             />
+            <h1 className='text-blue-600 text-xl font-bold'>Dentex</h1>
           </Link>
           <div className='flex flex-col gap-2 w-full max-w-[450px] mx-auto'>
             <h1 className='text-3xl font-bold text-center'>Créer un compte</h1>
