@@ -61,16 +61,16 @@ const Header = () => {
   return (
     <header className='h-18 border-b border-gray-200 fixed top-0 left-0 w-full flex bg-white z-40'>
       <div className='container h-full flex items-center gap-4 lg:justify-between relative'>
-        <Link to='/accueil' className='active:scale-100'>
+        <Link to='/accueil' className='active:scale-100 flex items-center gap-1'>
           <Image
             srcSet='/images/logo.svg'
             fallback='/images/logo.svg'
-            classes='w-20'
             alt='logo'
-            width={80}
-            height={80}
+            width={64}
+            height={64}
             loading='eager'
           />
+          <h1 className='text-blue-600 text-xl font-bold'>Dentex</h1>
         </Link>
         {/* Mobile Navigation */}
         <div className='relative lg:grow flex justify-center max-lg:order-3'>
