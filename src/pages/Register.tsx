@@ -6,6 +6,7 @@ import Button from '../components/ui/Button';
 import Image from '../components/ui/Image';
 import TextField from '../components/ui/TextField';
 import MetaData from '../components/ui/MetaData';
+import Logo from '../components/ui/Logo';
 
 const Register = () => {
   return (
@@ -95,20 +96,7 @@ const Register = () => {
       </MetaData>
       <div className='container h-dvh grid grid-cols-1 lg:grid-cols-2 lg:gap-4 py-5'>
         <div className='flex flex-col'>
-          <Link
-            to='/accueil'
-            className='active:scale-100 flex items-center gap-1 mb-auto mx-auto lg:mx-0'
-          >
-            <Image
-              srcSet='/images/logo.svg'
-              fallback='/images/logo.svg'
-              alt='logo'
-              width={64}
-              height={64}
-              loading='eager'
-            />
-            <h1 className='text-blue-600 text-xl font-bold'>Dentex</h1>
-          </Link>
+          <Logo classes='mb-auto mx-auto lg:mx-0' />
           <div className='flex flex-col gap-2 w-full max-w-[450px] mx-auto'>
             <h1 className='text-3xl font-bold text-center'>Créer un compte</h1>
             <p className='text-center text-gray-400'>

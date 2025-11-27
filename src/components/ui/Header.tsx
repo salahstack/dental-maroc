@@ -5,9 +5,9 @@ import { Link, NavLink } from 'react-router-dom';
 /**
  * Components
  */
-import Image from './Image';
 import { IconButton } from './Button';
 import Cart from '../../pages/Cart';
+import Logo from './Logo';
 /**
  * Icons
  */
@@ -24,7 +24,6 @@ const Header = () => {
   const [isCartOpen, toggleCart, closeCart] = useToggle();
   const { cart } = useCart();
   const { favorites } = useFavorite();
-
 
   const navItems = [
     {
@@ -61,17 +60,7 @@ const Header = () => {
   return (
     <header className='h-18 border-b border-gray-200 fixed top-0 left-0 w-full flex bg-white z-40'>
       <div className='container h-full flex items-center gap-4 lg:justify-between relative'>
-        <Link to='/accueil' className='active:scale-100 flex items-center gap-1'>
-          <Image
-            srcSet='/images/logo.svg'
-            fallback='/images/logo.svg'
-            alt='logo'
-            width={64}
-            height={64}
-            loading='eager'
-          />
-          <h1 className='text-blue-600 text-xl font-bold'>Dentex</h1>
-        </Link>
+        <Logo />
         {/* Mobile Navigation */}
         <div className='relative lg:grow flex justify-center max-lg:order-3'>
           <IconButton
@@ -91,7 +80,9 @@ const Header = () => {
                   <li key={key}>
                     <NavLink
                       to={link}
-                      className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
+                      className={({ isActive }) =>
+                        isActive ? 'nav-link active' : 'nav-link'
+                      }
                     >
                       {label}
                     </NavLink>
@@ -145,7 +136,9 @@ const Header = () => {
                 </span>
               )}
             </IconButton>
-            <span className='font-medium whitespace-nowrap'>{totalPrice} DH</span>
+            <span className='font-medium whitespace-nowrap'>
+              {totalPrice} DH
+            </span>
           </div>
           <IconButton
             to='/favoris'
