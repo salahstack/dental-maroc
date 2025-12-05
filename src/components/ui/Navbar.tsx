@@ -3,8 +3,14 @@
  */
 import { useEffect, type FC } from 'react';
 import { NavLink } from 'react-router-dom';
+/**
+ * Components
+ */
+import Button, { IconButton } from './Button';
 import Logo from './Logo';
-import { IconButton } from './Button';
+/**
+ * Icons
+ */
 import { X } from 'lucide-react';
 
 /**
@@ -62,6 +68,17 @@ const Navbar: FC<NavbarProps> = ({
               </li>
             );
           })}
+          <li className='xl:hidden'>
+            <Button
+              to='/auth/register'
+              classes='mt-4'
+            >
+              Register
+            </Button>
+          </li>
+          <li className='xl:hidden'>
+            <Button to='/auth/login' variant='text' classes='mt-4'>Login</Button>
+          </li>
         </ul>
       </nav>
       {isNavOpen && (
