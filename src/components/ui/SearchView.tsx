@@ -27,10 +27,10 @@ interface SearchViewProps {
  * ProductInterface
  */
 interface ProductInterface {
-  id: number,
-  title: string,
-  thumbnail: string,
-  price: number
+  id: number;
+  title: string;
+  thumbnail: string;
+  price: number;
 }
 
 const SearchView: FC<SearchViewProps> = ({ isSearchBarOpen, onToggle }) => {
@@ -55,7 +55,7 @@ const SearchView: FC<SearchViewProps> = ({ isSearchBarOpen, onToggle }) => {
     const fetchData = async () => {
       try {
         const res = await fetch(
-          `https://dummyjson.com/products/search?q=${debouncedQuery}&limit=6`,
+          `https://dummyjson.com/products/search?q=${debouncedQuery}`,
           { signal: controller.signal }
         );
         const data = await res.json();
@@ -74,6 +74,14 @@ const SearchView: FC<SearchViewProps> = ({ isSearchBarOpen, onToggle }) => {
     return () => controller.abort();
   }, [debouncedQuery]);
 
+  useEffect(() => {
+    if (isSearchBarOpen ) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [isSearchBarOpen]);
+
   return (
     <>
       <div className={`search-view ${isSearchBarOpen && 'active'}`}>
@@ -86,7 +94,7 @@ const SearchView: FC<SearchViewProps> = ({ isSearchBarOpen, onToggle }) => {
             icon={<ArrowLeft className='text-gray-700' />}
             variant='text'
             color='secondary'
-            classes='absolute left-3 top-1/2 -translate-y-1/2 duration-200 transition-colors rounded-full hover:bg-gray-200 xl:hidden'
+            classes='absolute left-3 top-1/2 -translate-y-1/2 duration-200 transition-colors rounded-full hover:bg-gray-100 xl:hidden'
             onClick={onToggle}
           />
           <input

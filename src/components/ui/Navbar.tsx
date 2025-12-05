@@ -1,7 +1,7 @@
 /**
  * Node modules
  */
-import type { FC } from 'react';
+import { useEffect, type FC } from 'react';
 import { NavLink } from 'react-router-dom';
 import Logo from './Logo';
 import { IconButton } from './Button';
@@ -27,6 +27,13 @@ const Navbar: FC<NavbarProps> = ({
   isNavOpen,
   toggle,
 }) => {
+  useEffect(() => {
+    if (isNavOpen) {
+      document.body.classList.add('overflow-hidden');
+    } else {
+      document.body.classList.remove('overflow-hidden');
+    }
+  }, [isNavOpen]);
   return (
     <>
       <nav className={`navbar ${classes} ${isNavOpen && 'active'}`}>
@@ -57,7 +64,9 @@ const Navbar: FC<NavbarProps> = ({
           })}
         </ul>
       </nav>
-      {isNavOpen && <div className=' lg:hidden fixed inset-0 z-10 bg-black/50'></div>}
+      {isNavOpen && (
+        <div className=' lg:hidden fixed inset-0 z-10 bg-black/50'></div>
+      )}
     </>
   );
 };
