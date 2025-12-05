@@ -68,7 +68,7 @@ const Navbar: FC<NavbarProps> = ({
               </li>
             );
           })}
-          <li className='xl:hidden'>
+          <li className='lg:hidden'>
             <Button
               to='/auth/register'
               classes='mt-4'
@@ -76,7 +76,7 @@ const Navbar: FC<NavbarProps> = ({
               Register
             </Button>
           </li>
-          <li className='xl:hidden'>
+          <li className='lg:hidden'>
             <Button to='/auth/login' variant='text' classes='mt-4'>Login</Button>
           </li>
         </ul>
