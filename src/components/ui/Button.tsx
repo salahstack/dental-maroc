@@ -2,7 +2,7 @@
  * Node modules
  */
 import type { ButtonHTMLAttributes, FC, ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, type LinkProps } from 'react-router-dom';
 
 /**
  * Button Interface
@@ -90,10 +90,9 @@ const IconButton: FC<IconButtonProps> = ({
   if (to) {
     return (
       <Link
-        to={to}
         target={target}
         className={`btn-icon ${variant} ${color} ${size} ${classes}`}
-        {...rest}
+        {...rest as LinkProps}
       >
         {icon} {children}
       </Link>
