@@ -1,7 +1,7 @@
 /**
  * Node modules
  */
-import { useCallback, useEffect, useMemo, useState, type FC } from 'react';
+import { useEffect, useState, type ChangeEvent, type FC } from 'react';
 import { Link } from 'react-router-dom';
 /**
  * Components
@@ -21,78 +21,23 @@ import { ArrowLeft, Search } from 'lucide-react';
 interface SearchViewProps {
   isSearchBarOpen: boolean;
   onToggle: () => void;
-  // items:
 }
 
 /**
- * Products
+ * ProductInterface
  */
-
-const items = [
-  {
-    id: 101,
-    name: '3M Filtek Z350 XT Composite A2',
-    slug: '3m-filtek-z350-xt-composite-a2',
-    thumbnail:
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=300&q=60',
-    price: 18.5,
-    brand: '3M',
-    category: 'Composite',
-    short_description:
-      'Nano-hybrid composite for anterior & posterior restorations',
-    in_stock: true,
-  },
-  {
-    id: 102,
-    name: 'Ivoclar OptraDam Plus',
-    slug: 'ivoclar-optradam-plus',
-    thumbnail: 'https://cdn.example.com/products/102/thumb.jpg',
-    price: 12.99,
-    brand: 'Ivoclar Vivadent',
-    category: 'Rubber Dam',
-    short_description: 'Flexible rubber dam for moisture control',
-    in_stock: false,
-  },
-  {
-    id: 103,
-    name: 'Dentsply Gutta-Percha Points (Size 25)',
-    slug: 'dentsply-gutta-percha-25',
-    thumbnail: 'https://cdn.example.com/products/103/thumb.jpg',
-    price: 7.2,
-    brand: 'Dentsply',
-    category: 'Endodontics',
-    short_description: 'High-precision gutta-percha cones for obturation',
-    in_stock: true,
-  },
-  {
-    id: 104,
-    name: 'Woodpecker LED.B Curing Light',
-    slug: 'woodpecker-led-b-curing-light',
-    thumbnail: 'https://cdn.example.com/products/104/thumb.jpg',
-    price: 49.99,
-    brand: 'Woodpecker',
-    category: 'Light Curing',
-    short_description: 'High-power LED curing light with 1200 mW/cm²',
-    in_stock: true,
-  },
-  {
-    id: 105,
-    name: 'Meta Biomed RC-Prep Paste',
-    slug: 'meta-biomed-rc-prep',
-    thumbnail: 'https://cdn.example.com/products/105/thumb.jpg',
-    price: 9.5,
-    brand: 'Meta Biomed',
-    category: 'Endodontics',
-    short_description: 'Lubricant for root canal instrumentation',
-    in_stock: true,
-  },
-];
+interface ProductInterface {
+  id: number,
+  title: string,
+  thumbnail: string,
+  price: number
+}
 
 const SearchView: FC<SearchViewProps> = ({ isSearchBarOpen, onToggle }) => {
   const [query, setQuery] = useState('');
   const debouncedQuery = useDebounce(query);
-  const [products, setProducts] = useState([]);
-  const handleChange = (e) => {
+  const [products, setProducts] = useState<ProductInterface[]>([]);
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
   const reset = () => {
@@ -117,7 +62,7 @@ const SearchView: FC<SearchViewProps> = ({ isSearchBarOpen, onToggle }) => {
         // console.log(data.products);
         setProducts(data.products);
       } catch (err) {
-        if (err.name === 'AbortError') {
+        if (err instanceof DOMException && err.name === 'AbortError') {
           console.log('Previous request aborted');
         } else {
           console.error(err);
