@@ -76,7 +76,7 @@
   * Button
   */
   .btn {
-    @apply rounded-lg flex items-center justify-center gap-4;
+    @apply rounded-lg flex items-center justify-center gap-4 transition-colors;
   }
   .btn.md {
     @apply h-10 px-4;
@@ -93,9 +93,12 @@
   .btn.filled.danger {
     @apply bg-red-500 text-white;
   }
+  .btn.text {
+    @apply hover:bg-gray-200
+  }
 
   .btn-icon {
-    @apply flex items-center justify-center rounded-lg;
+    @apply flex items-center justify-center rounded-lg transition-colors;
   }
   .btn-icon.lg {
     @apply w-12 h-12;
@@ -116,7 +119,7 @@
     @apply text-blue-600;
   }
   .btn-icon.text.secondary {
-    @apply text-black;
+    @apply text-black hover:bg-gray-200;
   }
 
   /* Navbar */
