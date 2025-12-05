@@ -9,6 +9,10 @@ import type { ReactNode } from 'react';
  */
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
+/**
+ * Interfaces
+ */
+
 interface ProductInterface {
   id: number;
   image: string;
@@ -18,27 +22,35 @@ interface ProductInterface {
   price: number;
 }
 
-interface CartContextInterface {
-  cart: ProductInterface[];
-  addProduct: (product: ProductInterface) => void;
-  removeProduct: (id: number) => void;
+interface CartActionsContextInterface {
+  addToCart: (product: ProductInterface) => void;
+  removeFromCart: (id: number) => void;
   clearCart: () => void;
 }
 
-const initialContextValue: CartContextInterface = {
-  cart: [],
-  addProduct: () => {},
-  removeProduct: () => {},
+/**
+ * Initial Context Value
+ */
+
+const initialCartActionsContextValue: CartActionsContextInterface = {
+  addToCart: () => {},
+  removeFromCart: () => {},
   clearCart: () => {},
 };
 
-export const CartContext = createContext(initialContextValue);
+// State context is just the array directly
+export const CartStateContext = createContext<ProductInterface[]>([]);
+export const CartActionsContext = createContext<CartActionsContextInterface>(
+  initialCartActionsContextValue
+);
 
 const CartProvider = ({ children }: { children: ReactNode }) => {
   const { removeItem, setItem, getItem } = useLocalStorage();
-const [cart, setCart] = useState<ProductInterface[]>(() => getItem<ProductInterface[]>('cart') || []);
+  const [cart, setCart] = useState<ProductInterface[]>(
+    () => getItem<ProductInterface[]>('cart') || []
+  );
 
-  const addProduct = useCallback(
+  const addToCart = useCallback(
     (newProduct: ProductInterface) => {
       setCart((prevCart) => {
         const productExists = prevCart.find(
@@ -63,7 +75,7 @@ const [cart, setCart] = useState<ProductInterface[]>(() => getItem<ProductInterf
     [setItem]
   );
 
-  const removeProduct = useCallback(
+  const removeFromCart = useCallback(
     (id: number) => {
       setCart((prevCart) => {
         const updatedCart = prevCart.filter((item) => item.id !== id);
@@ -79,11 +91,16 @@ const [cart, setCart] = useState<ProductInterface[]>(() => getItem<ProductInterf
     removeItem('cart');
   }, [removeItem]);
 
-  const contextValue = useMemo(() => {
-    return { cart, addProduct, clearCart, removeProduct };
-  }, [cart, addProduct, clearCart, removeProduct]);
+  const actions = useMemo(() => {
+    return { addToCart, clearCart, removeFromCart };
+  }, [addToCart, clearCart, removeFromCart]);
+
   return (
-    <CartContext.Provider value={contextValue}>{children}</CartContext.Provider>
+    <CartActionsContext.Provider value={actions}>
+      <CartStateContext.Provider value={cart}>
+        {children}
+      </CartStateContext.Provider>
+    </CartActionsContext.Provider>
   );
 };
 

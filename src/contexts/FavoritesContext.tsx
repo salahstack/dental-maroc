@@ -15,30 +15,32 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 /**
  * Interfaces
-*/
+ */
 import type { ProductProps } from '../interfaces/products';
 
-
-interface FavoriteContextInterface {
-  favorites: ProductProps[];
-  addToFavorite: (product: ProductProps) => void;
-  removeFromFavorite: (id: number) => void;
-  clearFavorite: () => void;
-};
+interface FavoriteActionsContextInterface {
+  addToFavorites: (product: ProductProps) => void;
+  removeFromFavorites: (id: number) => void;
+  clearFavorites: () => void;
+}
 
 /**
- * Initial context value
+ * Initial Context Value
  */
 
-const initialContextValue: FavoriteContextInterface = {
-  favorites: [],
-  addToFavorite: () => {},
-  removeFromFavorite: () => {},
-  clearFavorite: () => {},
+const initialFavoritesActionsContextValue: FavoriteActionsContextInterface = {
+  addToFavorites: () => {},
+  removeFromFavorites: () => {},
+  clearFavorites: () => {},
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const FavoritesContext = createContext(initialContextValue);
+export const FavoritesActionsContext =
+  createContext<FavoriteActionsContextInterface>(
+    initialFavoritesActionsContextValue
+  );
+// eslint-disable-next-line react-refresh/only-export-components
+export const FavoritesStateContext = createContext<ProductProps[]>([]);
 
 const FavoriteProvider = ({ children }: { children: ReactNode }) => {
   const { getItem, setItem, removeItem } = useLocalStorage();
@@ -46,7 +48,7 @@ const FavoriteProvider = ({ children }: { children: ReactNode }) => {
     () => getItem<ProductProps[]>('favorite') || []
   );
 
-  const addToFavorite = useCallback(
+  const addToFavorites = useCallback(
     (product: ProductProps) => {
       setFavorites((prev) => {
         const exists = prev.some((item) => item.id === product.id);
@@ -60,7 +62,7 @@ const FavoriteProvider = ({ children }: { children: ReactNode }) => {
     [setItem]
   );
 
-  const removeFromFavorite = useCallback(
+  const removeFromFavorites = useCallback(
     (id: number) => {
       setFavorites((prev) => {
         const updateFavorites = prev.filter((item) => item.id !== Number(id));
@@ -71,20 +73,26 @@ const FavoriteProvider = ({ children }: { children: ReactNode }) => {
     [setItem]
   );
 
-  const clearFavorite = useCallback(() => {
+  const clearFavorites = useCallback(() => {
     setFavorites([]);
     removeItem('favorite');
   }, [removeItem]);
 
-  const contextValue = useMemo(
-    () => ({ addToFavorite, removeFromFavorite, clearFavorite, favorites }),
-    [addToFavorite, removeFromFavorite, clearFavorite, favorites]
+  const actions = useMemo(
+    () => ({
+      addToFavorites,
+      removeFromFavorites,
+      clearFavorites,
+    }),
+    [addToFavorites, removeFromFavorites, clearFavorites]
   );
 
   return (
-    <FavoritesContext.Provider value={contextValue}>
-      {children}
-    </FavoritesContext.Provider>
+    <FavoritesActionsContext.Provider value={actions}>
+      <FavoritesStateContext.Provider value={favorites}>
+        {children}
+      </FavoritesStateContext.Provider>
+    </FavoritesActionsContext.Provider>
   );
 };
 

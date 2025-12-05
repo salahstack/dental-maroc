@@ -1,7 +1,8 @@
 /**
  * Node modules
  */
-import { useState, type FC } from 'react';
+import { useState, memo, type FC } from 'react';
+import { Link } from 'react-router-dom';
 /**
  * Components
  */
@@ -17,85 +18,58 @@ import type { ProductProps } from '../../interfaces/products';
  * Icons
  */
 import { Heart, ShoppingCart } from 'lucide-react';
-import { Link } from 'react-router-dom';
 /**
  * Custom hooks
  */
-import { useCart } from '../../hooks/useCart';
-import { useFavorite } from '../../hooks/useFavorite';
+import useCartActions from '../../hooks/cart/useCartActions';
+import useFavoritesActions from '../../hooks/favorites/useFavoritesActions';
+import useIsProductInFavorites from '../../hooks/favorites/useIsProductInFavorites';
 /**
  * Component
  */
 
-const Product: FC<ProductProps> = ({
-  image,
-  title,
-  slug,
-  price,
-  description,
-  id,
-  bestSeller,
-  newArrival,
-}) => {
-  const { addProduct } = useCart();
-  const { addToFavorite, removeFromFavorite, favorites } = useFavorite();
-  const [quantity, setQuantity] = useState<number>(1);
-  const isFavorite = !!favorites.find((item) => Number(item.id) === Number(id));
+const Product: FC<ProductProps> = memo(
+  ({ image, title, slug, price, description, id, bestSeller, newArrival }) => {
+    const { addToCart } = useCartActions();
+    const { addToFavorites, removeFromFavorites } = useFavoritesActions();
+    const isInFavorites = useIsProductInFavorites(id);
+    const [quantity, setQuantity] = useState<number>(1);
 
-  const handleToggleFavorite = () => {
-    if (isFavorite) {
-      removeFromFavorite(id);
-    } else {
-      addToFavorite({
-        id,
-        title,
-        slug,
-        description,
-        image,
-        price,
-        bestSeller,
-        newArrival,
-      });
-    }
-  };
-
-  return (
-    <div className='product-card'>
-      <IconButton
-        classes='absolute top-4 right-4'
-        variant='filled'
-        color='secondary'
-        icon={
-          <Heart
-            className={`${isFavorite ? 'text-blue-600 fill-blue-600' : ''}`}
-          />
-        }
-        aria-label='add to favorites'
-        onClick={handleToggleFavorite}
-      />
-      {bestSeller && <span className='badge'>meilleure vente</span>}
-      {newArrival && <span className='badge'>nouveau</span>}
-      <Link
-        to={`/produits/${slug}`}
-        state={{
-          section: bestSeller
-            ? 'meilleures ventes'
-            : newArrival
-            ? 'nouveaux arrivages'
-            : 'Produits',
+    const handleToggleFavorite = () => {
+      if (isInFavorites) {
+        removeFromFavorites(id);
+      } else {
+        addToFavorites({
+          id,
           title,
-        }}
-      >
-        <Image
-          srcSet={image}
-          fallback={image}
-          alt={title}
-          width={600}
-          height={400}
-          classes='rounded-tl-lg rounded-tr-lg h-40 md:h-48 w-full'
+          slug,
+          description,
+          image,
+          price,
+          bestSeller,
+          newArrival,
+        });
+      }
+    };
+    // console.count('component re-rendered');
+    return (
+      <div className='product-card'>
+        <IconButton
+          classes='absolute top-4 right-4'
+          variant='filled'
+          color='secondary'
+          icon={
+            <Heart
+              className={`${
+                isInFavorites ? 'text-blue-600 fill-blue-600' : ''
+              }`}
+            />
+          }
+          aria-label='add to favorites'
+          onClick={handleToggleFavorite}
         />
-      </Link>
-      <div className='product-content'>
+        {bestSeller && <span className='badge'>meilleure vente</span>}
+        {newArrival && <span className='badge'>nouveau</span>}
         <Link
           to={`/produits/${slug}`}
           state={{
@@ -107,31 +81,53 @@ const Product: FC<ProductProps> = ({
             title,
           }}
         >
-          <h2 className='product-title hover:text-blue-600 transition'>
-            {title}
-          </h2>
-        </Link>
-        <p className='product-description'>{description}</p>
-        <span className='product-price'>{price} DH</span>
-        <div className='flex items-center gap-2 flex-wrap mt-4'>
-          <Quantity
-            quantity={quantity}
-            setQuantity={setQuantity}
+          <Image
+            srcSet={image}
+            fallback={image}
+            alt={title}
+            width={600}
+            height={400}
+            classes='rounded-tl-lg rounded-tr-lg h-40 md:h-48 w-full'
           />
-          <Button
-            classes='w-full'
-            onClick={() => {
-              addProduct({ id, title, description, image, price, quantity });
-              setQuantity(1);
+        </Link>
+        <div className='product-content'>
+          <Link
+            to={`/produits/${slug}`}
+            state={{
+              section: bestSeller
+                ? 'meilleures ventes'
+                : newArrival
+                ? 'nouveaux arrivages'
+                : 'Produits',
+              title,
             }}
           >
-            <ShoppingCart />
-            Ajouter au panier
-          </Button>
+            <h2 className='product-title hover:text-blue-600 transition'>
+              {title}
+            </h2>
+          </Link>
+          <p className='product-description'>{description}</p>
+          <span className='product-price'>{price} DH</span>
+          <div className='flex items-center gap-2 flex-wrap mt-4'>
+            <Quantity
+              quantity={quantity}
+              setQuantity={setQuantity}
+            />
+            <Button
+              classes='w-full'
+              onClick={() => {
+                addToCart({ id, title, description, image, price, quantity });
+                setQuantity(1);
+              }}
+            >
+              <ShoppingCart />
+              Ajouter au panier
+            </Button>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default Product;

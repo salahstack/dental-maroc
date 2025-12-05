@@ -95,7 +95,16 @@
   }
 
   .btn-icon {
-    @apply w-10 h-10 flex items-center justify-center rounded-lg;
+    @apply flex items-center justify-center rounded-lg;
+  }
+  .btn-icon.lg {
+    @apply w-12 h-12;
+  }
+  .btn-icon.md {
+    @apply w-10 h-10;
+  }
+  .btn-icon.sm {
+    @apply w-8 h-8;
   }
   .btn-icon.filled.primary {
     @apply bg-blue-600 text-white;
@@ -113,24 +122,61 @@
   /* Navbar */
 
   .navbar {
-    @apply absolute top-full mt-6 right-0 min-w-40 p-2 bg-blue-100/90 rounded-lg z-10 ring-inset ring-1 ring-zinc-50/5 scale-90 isolate opacity-0 invisible
-    transition-[opacity,transform,filter,scale,visibility] lg:static lg:mt-0 lg:opacity-100 lg:visible  lg:scale-100 backdrop-blur-2xl;
+    @apply p-4 lg:p-2 absolute top-0 right-0 h-dvh w-full max-w-[340px] bg-white rounded-l-xl z-20 translate-x-full opacity-0 invisible transition-[transform_opacity_visibility] duration-300 lg:relative lg:top-auto lg:right-auto lg:h-auto lg:w-auto lg:max-w-none lg:translate-x-0 lg:opacity-100 lg:visible lg:transition-none
+    lg:bg-blue-100/90 lg:rounded-lg lg:scale-90 lg:justify-self-center;
   }
-
+  .navbar .navbar-list {
+    @apply mt-4 pt-4 border-t border-gray-200 lg:flex lg:items-center lg:mt-0 lg:pt-0;
+  }
   .navbar.active {
-    @apply opacity-100 scale-100 visible;
+    @apply translate-x-0 opacity-100 visible;
   }
-
   /** Nav Link  **/
   .nav-link {
-    @apply text-gray-700 hover:text-blue-600 transition px-3 py-2 rounded-md text-sm font-medium whitespace-nowrap;
+    @apply text-gray-700 hover:text-blue-600 transition px-3 py-2 rounded-xl text-sm font-medium whitespace-nowrap;
   }
   /**  Active Nav Link  **/
 
   .nav-link.active {
-    @apply text-white duration-500 bg-blue-600;
+    @apply text-white duration-300 bg-blue-600;
   }
 
+  /** Search View **/
+  .search-view {
+    @apply fixed top-0 left-0 h-dvh w-full z-50 bg-blue-50 
+        opacity-0 invisible 
+        [clip-path:circle(4%_at_calc(100%-102px)_5%)] 
+        transition-[clip-path,opacity,visibility] 
+        duration-500
+        xl:relative 
+        xl:w-80 
+        xl:h-auto
+        xl:opacity-100 
+        xl:visible
+        xl:bg-transparent
+        xl:[clip-path:none]
+        xl:transition-none;
+  }
+
+  .search-view.active {
+    @apply opacity-100 visible [clip-path:circle(130%_at_73%_5%)];
+  }
+  .search-wrapper {
+    @apply relative border-b border-b-gray-300 xl:border-none;
+  }
+  .search-field {
+    @apply h-18 leading-18 pl-14 pr-10 placeholder:text-gray-500 xl:h-10 xl:leading-normal xl:rounded-xl xl:border-2 xl:border-gray-200 xl:pl-10 xl:transition-colors xl:focus:border-blue-600;
+  }
+  .search-field::-webkit-search-cancel-button {
+    @apply hidden;
+  }
+  .search-view .view-list {
+    @apply pt-2 pb-4 px-3 xl:absolute xl:left-0 xl:top-[calc(100%+18px)] xl:w-full xl:z-10 xl:bg-white xl:rounded-xl xl:border xl:border-gray-200;
+  }
+  .search-view .view-item {
+    @apply h-12 flex justify-between items-center gap-2 px-4
+    hover:bg-blue-100 rounded-lg focus:scale-100 duration-200 md:hover:bg-blue-50;
+  }
   /** Category Card  **/
   .category-card {
     @apply p-4 rounded-xl bg-gray-200 flex items-center gap-2;
@@ -211,5 +257,8 @@
   }
   .img-cover {
     @apply w-full h-full object-cover;
+  }
+  .all-unset {
+    all: unset;
   }
 }

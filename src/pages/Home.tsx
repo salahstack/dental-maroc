@@ -11,7 +11,7 @@ import Image from '../components/ui/Image';
 import InfoCard from '../components/ui/InfoCard';
 import Product from '../components/ui/Product';
 import MetaData from '../components/ui/MetaData';
-import Accordion from '../components/Accordion';
+import Accordion from '../components/ui/Accordion';
 
 /**
  * Interfaces
@@ -177,83 +177,83 @@ const bestSellers: ProductProps[] = [
 
 
 const newArrivals: ProductProps[] = [
-  {
-    id: 1,
-    image:
-      'https://images.unsplash.com/photo-1629904853693-ec84a89b2e63?auto=format&fit=crop&w=600&q=80',
-    title: 'Premium Dental Chair Unit',
-    slug: 'premium-dental-chair-unit',
-    price: 2499,
-    description:
-      'Ergonomic dental chair with LED operating light and multifunctional delivery system.',
-    newArrival: true,
-  },
-  {
-    id: 2,
-    image:
-      'https://images.pexels.com/photos/3845855/pexels-photo-3845855.jpeg?auto=compress&cs=tinysrgb&w=600',
-    title: 'Ultrasonic Scaler',
-    slug: 'ultrasonic-scaler',
-    price: 499,
-    description:
-      'High-frequency ultrasonic scaler for efficient plaque and tartar removal.',
-    newArrival: true,
-  },
-  {
-    id: 3,
-    image:
-      'https://images.pexels.com/photos/4226769/pexels-photo-4226769.jpeg?auto=compress&cs=tinysrgb&w=600',
-    title: 'Class B Autoclave Sterilizer',
-    slug: 'class-b-autoclave-sterilizer',
-    price: 1899,
-    description:
-      'Fully automatic steam sterilizer with advanced safety features for dental instruments.',
-    newArrival: true,
-  },
-  {
-    id: 4,
-    image:
-      'https://images.unsplash.com/photo-1629904853714-3f7a64de03f3?auto=format&fit=crop&w=600&q=80',
-    title: 'High Speed Handpiece',
-    slug: 'high-speed-handpiece',
-    price: 299,
-    description:
-      'Durable turbine handpiece with ceramic bearings for precision cutting.',
-    newArrival: true,
-  },
-  {
-    id: 5,
-    image:
-      'https://images.pexels.com/photos/3845769/pexels-photo-3845769.jpeg?auto=compress&cs=tinysrgb&w=600',
-    title: 'Intraoral Camera',
-    slug: 'intraoral-camera',
-    price: 699,
-    description:
-      'HD intraoral camera with USB connection for patient education and case documentation.',
-    newArrival: true,
-  },
-  {
-    id: 6,
-    image:
-      'https://images.pexels.com/photos/4269363/pexels-photo-4269363.jpeg?auto=compress&cs=tinysrgb&w=600',
-    title: 'Complete Orthodontic Kit',
-    slug: 'complete-orthodontic-kit',
-    price: 399,
-    description:
-      'Comprehensive set including brackets, wires, and tools for orthodontic procedures.',
-    newArrival: true,
-  },
-  {
-    id: 7,
-    image:
-      'https://images.pexels.com/photos/6812527/pexels-photo-6812527.jpeg?auto=compress&cs=tinysrgb&w=600',
-    title: 'Digital X-Ray Sensor',
-    slug: 'digital-x-ray-sensor',
-    price: 1499,
-    description:
-      'CMOS intraoral digital X-ray sensor with high resolution and low radiation exposure.',
-    newArrival: true,
-  },
+  // {
+  //   id: 1,
+  //   image:
+  //     'https://images.unsplash.com/photo-1629904853693-ec84a89b2e63?auto=format&fit=crop&w=600&q=80',
+  //   title: 'Premium Dental Chair Unit',
+  //   slug: 'premium-dental-chair-unit',
+  //   price: 2499,
+  //   description:
+  //     'Ergonomic dental chair with LED operating light and multifunctional delivery system.',
+  //   newArrival: true,
+  // },
+  // {
+  //   id: 2,
+  //   image:
+  //     'https://images.pexels.com/photos/3845855/pexels-photo-3845855.jpeg?auto=compress&cs=tinysrgb&w=600',
+  //   title: 'Ultrasonic Scaler',
+  //   slug: 'ultrasonic-scaler',
+  //   price: 499,
+  //   description:
+  //     'High-frequency ultrasonic scaler for efficient plaque and tartar removal.',
+  //   newArrival: true,
+  // },
+  // {
+  //   id: 3,
+  //   image:
+  //     'https://images.pexels.com/photos/4226769/pexels-photo-4226769.jpeg?auto=compress&cs=tinysrgb&w=600',
+  //   title: 'Class B Autoclave Sterilizer',
+  //   slug: 'class-b-autoclave-sterilizer',
+  //   price: 1899,
+  //   description:
+  //     'Fully automatic steam sterilizer with advanced safety features for dental instruments.',
+  //   newArrival: true,
+  // },
+  // {
+  //   id: 4,
+  //   image:
+  //     'https://images.unsplash.com/photo-1629904853714-3f7a64de03f3?auto=format&fit=crop&w=600&q=80',
+  //   title: 'High Speed Handpiece',
+  //   slug: 'high-speed-handpiece',
+  //   price: 299,
+  //   description:
+  //     'Durable turbine handpiece with ceramic bearings for precision cutting.',
+  //   newArrival: true,
+  // },
+  // {
+  //   id: 5,
+  //   image:
+  //     'https://images.pexels.com/photos/3845769/pexels-photo-3845769.jpeg?auto=compress&cs=tinysrgb&w=600',
+  //   title: 'Intraoral Camera',
+  //   slug: 'intraoral-camera',
+  //   price: 699,
+  //   description:
+  //     'HD intraoral camera with USB connection for patient education and case documentation.',
+  //   newArrival: true,
+  // },
+  // {
+  //   id: 6,
+  //   image:
+  //     'https://images.pexels.com/photos/4269363/pexels-photo-4269363.jpeg?auto=compress&cs=tinysrgb&w=600',
+  //   title: 'Complete Orthodontic Kit',
+  //   slug: 'complete-orthodontic-kit',
+  //   price: 399,
+  //   description:
+  //     'Comprehensive set including brackets, wires, and tools for orthodontic procedures.',
+  //   newArrival: true,
+  // },
+  // {
+  //   id: 7,
+  //   image:
+  //     'https://images.pexels.com/photos/6812527/pexels-photo-6812527.jpeg?auto=compress&cs=tinysrgb&w=600',
+  //   title: 'Digital X-Ray Sensor',
+  //   slug: 'digital-x-ray-sensor',
+  //   price: 1499,
+  //   description:
+  //     'CMOS intraoral digital X-ray sensor with high resolution and low radiation exposure.',
+  //   newArrival: true,
+  // },
 ];
 
 
@@ -402,7 +402,7 @@ const Home = () => {
       </MetaData>
 
       {/* Hero Section */}
-      <section>
+      <section className='pt-26 lg:pt-32'>
         <div className='container grid grid-cols-1 md:lg:grid-cols-2 lg:grid-cols-[1.5fr_0.9fr] gap-6 items-center'>
           <div className=' w-full max-w-[450px] mx-auto'>
             <h1 className=' text-3xl lg:text-5xl font-bold mb-4 leading-tight'>

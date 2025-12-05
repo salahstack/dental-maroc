@@ -28,6 +28,7 @@ const Logo: FC<LogoProps> = ({ classes = '' }) => {
         width={64}
         height={64}
         loading='eager'
+        classes='shrink-0'
       />
       <h1 className='text-blue-600 text-xl font-bold'>Dentora</h1>
     </Link>

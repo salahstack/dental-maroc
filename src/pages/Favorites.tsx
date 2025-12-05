@@ -6,10 +6,10 @@ import Product from '../components/ui/Product';
 /**
  * Hooks
  */
-import { useFavorite } from '../hooks/useFavorite';
+import useFavoritesState from '../hooks/favorites/useFavoritesState';
 
 const Favorites = () => {
-  const { favorites } = useFavorite();
+  const favorites = useFavoritesState();
   return (
     <>
       <MetaData
@@ -18,7 +18,7 @@ const Favorites = () => {
       >
         {/* Open Graph / Facebook */}
         <meta
-          property='og:title' 
+          property='og:title'
           content='Vos Favoris - Dental Supply'
         />
         <meta
@@ -66,14 +66,20 @@ const Favorites = () => {
           name='twitter:image'
           content='/images/home-1200.webp'
         />
-        <meta name='twitter:type' content='website' />
+        <meta
+          name='twitter:type'
+          content='website'
+        />
         {/* Canonical URL */}
         <link
           rel='canonical'
           href='https://dentalmaroc.netlify.app/favoris'
         />
         {/* Robots */}
-        <meta name='robots' content='noindex, follow' />
+        <meta
+          name='robots'
+          content='noindex, follow'
+        />
       </MetaData>
       <section>
         <div className='container'>

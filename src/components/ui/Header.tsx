@@ -1,29 +1,26 @@
 /**
- * Node modules
- */
-import { Link, NavLink } from 'react-router-dom';
-/**
  * Components
  */
-import { IconButton } from './Button';
-import Cart from '../../pages/Cart';
+import Button, { IconButton } from './Button';
 import Logo from './Logo';
+import Navbar from './Navbar';
+import SearchView from './SearchView';
 /**
  * Icons
  */
-import { Heart, Menu, ShoppingCart, X } from 'lucide-react';
+import { Heart, Menu, Search, ShoppingCart } from 'lucide-react';
 /**
  * Custom hooks
  */
+import useCartState from '../../hooks/cart/useCartState';
+import useFavoritesState from '../../hooks/favorites/useFavoritesState';
 import { useToggle } from '../../hooks/useToggle';
-import { useCart } from '../../hooks/useCart';
-import { useFavorite } from '../../hooks/useFavorite';
 
 const Header = () => {
-  const [isOpen, toggle] = useToggle();
-  const [isCartOpen, toggleCart, closeCart] = useToggle();
-  const { cart } = useCart();
-  const { favorites } = useFavorite();
+  const cart = useCartState();
+  const favorites = useFavoritesState();
+  const [isNavOpen, toggle] = useToggle();
+  const [isSearchBarOpen, toggleSearchBar] = useToggle();
 
   const navItems = [
     {
@@ -42,111 +39,77 @@ const Header = () => {
       label: 'Contact',
       link: 'contact',
     },
-    {
-      label: 'Favoris',
-      link: 'favoris',
-    },
   ];
-
-  const totalPrice = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
 
   const cartItems = cart.reduce((count, item) => count + item.quantity, 0);
 
   const favoriteItems = favorites.length;
-
   return (
     <header className='h-18 border-b border-gray-200 fixed top-0 left-0 w-full flex bg-white z-40'>
-      <div className='container h-full flex items-center gap-4 lg:justify-between relative'>
+      <div className='container h-full flex justify-between xl:grid xl:grid-cols-[1fr_4fr_1fr_1fr] xl:grid-rows-1 xl:justify-normal items-center gap-4'>
         <Logo />
-        {/* Mobile Navigation */}
-        <div className='relative lg:grow flex justify-center max-lg:order-3'>
+        <Navbar
+          navItems={navItems}
+          isNavOpen={isNavOpen}
+          toggle={toggle}
+        />
+        {/* <IconButton
+          icon={<Search size={20} />}
+          classes='xl:hidden ml-auto xl:ml-auto'
+          variant='text'
+          size='sm'
+          color='secondary'
+          aria-label='open search bar'
+          onClick={toggleSearchBar}
+        /> */}
+        <SearchView
+          isSearchBarOpen={isSearchBarOpen}
+          onToggle={toggleSearchBar}
+        />
+        <div className='flex items-center gap-2 max-xl:justify-self-end'>
+          {/* Header Actions */}
           <IconButton
-            aria-label='open menu'
-            classes='lg:hidden ml-auto'
+            icon={<Search size={20} />}
+            classes='xl:hidden'
+            variant='text'
+            size='sm'
+            color='secondary'
+            aria-label='open search bar'
+            onClick={toggleSearchBar}
+          />
+          <IconButton
+            aria-label='cart'
+            classes='relative'
             variant='text'
             color='secondary'
-            onClick={toggle}
+            size='sm'
+            to='/cart'
             icon={
-              isOpen ? <X aria-hidden='true' /> : <Menu aria-hidden='true' />
+              <ShoppingCart
+                aria-hidden='true'
+                size='20'
+              />
             }
-          />
-          <nav className={`navbar ${isOpen ? 'active' : ''}`}>
-            <ul className='flex flex-col lg:flex-row lg:items-center'>
-              {navItems.map(({ label, link }, key) => {
-                return (
-                  <li key={key}>
-                    <NavLink
-                      to={link}
-                      className={({ isActive }) =>
-                        isActive ? 'nav-link active' : 'nav-link'
-                      }
-                    >
-                      {label}
-                    </NavLink>
-                  </li>
-                );
-              })}
-            </ul>
-            <div className='mt-2 lg:hidden'>
-              <Link
-                to='/se-connecter'
-                className='nav-link'
-              >
-                Se connecter
-              </Link>
-              <Link
-                to='/s-inscrire'
-                className='nav-link'
-              >
-                S'inscrire
-              </Link>
-            </div>
-          </nav>
-        </div>
-        <div className='flex items-center gap-2 max-lg:ml-auto'>
-          <nav className='items-center gap-2 hidden lg:flex'>
-            <Link
-              to='/se-connecter'
-              className='nav-link'
-            >
-              Se connecter
-            </Link>
-            <Link
-              to='/s-inscrire'
-              className='nav-link'
-            >
-              S'inscrire
-            </Link>
-          </nav>
-          <div className='flex items-center gap-2 relative'>
-            <IconButton
-              aria-label='open cart'
-              classes='relative'
-              variant='text'
-              color='secondary'
-              icon={<ShoppingCart aria-hidden='true' />}
-              onClick={toggleCart}
-            >
-              {cartItems > 0 && (
-                <span className='absolute w-6 h-6 bg-blue-600 text-white text-sm rounded-full flex items-center justify-center -top-1/2 translate-y-1/2 left-1/2'>
-                  {cartItems}
-                </span>
-              )}
-            </IconButton>
-            <span className='font-medium whitespace-nowrap'>
-              {totalPrice} DH
-            </span>
-          </div>
+          >
+            {cartItems > 0 && (
+              <span className='absolute text-xs w-5 h-5 bg-blue-600 text-white rounded-full flex items-center justify-center -top-1/2 translate-y-1/2 left-1/2'>
+                {cartItems}
+              </span>
+            )}
+          </IconButton>
           <IconButton
-            to='/favoris'
-            icon={<Heart aria-hidden='true' />}
+            to='/favorites'
+            icon={
+              <Heart
+                aria-hidden='true'
+                size='20'
+              />
+            }
             classes='relative hidden lg:flex'
             variant='text'
+            size='sm'
             color='secondary'
-            aria-label='favoris'
+            aria-label='favorites'
           >
             {favoriteItems > 0 && (
               <span className='absolute w-6 h-6 bg-blue-600 text-white text-sm rounded-full flex items-center justify-center -top-1/2 translate-y-1/2 left-1/2'>
@@ -154,11 +117,21 @@ const Header = () => {
               </span>
             )}
           </IconButton>
+          <Button
+            to='/auth/login'
+            classes='max-lg:hidden px-6 rounded-3xl'
+          >
+            Login
+          </Button>
+          <IconButton
+            onClick={toggle}
+            icon={<Menu />}
+            classes='rounded-xl lg:hidden'
+            variant='text'
+            color='secondary'
+            aria-label='open sidebar'
+          />
         </div>
-        <Cart
-          isOpen={isCartOpen}
-          onClose={closeCart}
-        />
       </div>
     </header>
   );

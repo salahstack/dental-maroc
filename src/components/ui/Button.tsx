@@ -67,6 +67,7 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   classes?: string;
   variant?: 'filled' | 'outlined' | 'text';
   color?: 'primary' | 'secondary' | 'danger';
+  size?: 'sm' | 'md' | 'lg',
   state?: object;
   children?: ReactNode;
 }
@@ -80,6 +81,7 @@ const IconButton: FC<IconButtonProps> = ({
   icon,
   variant = 'filled',
   color = 'primary',
+  size = 'md',
   children,
   to,
   target = '_self',
@@ -90,7 +92,8 @@ const IconButton: FC<IconButtonProps> = ({
       <Link
         to={to}
         target={target}
-        className={`btn-icon ${variant} ${color} ${classes}`}
+        className={`btn-icon ${variant} ${color} ${size} ${classes}`}
+        {...rest}
       >
         {icon} {children}
       </Link>
@@ -98,7 +101,7 @@ const IconButton: FC<IconButtonProps> = ({
   } else {
     return (
       <button
-        className={`btn-icon ${variant} ${color} ${classes}`}
+        className={`btn-icon ${variant} ${color} ${size} ${classes}`}
         {...rest}
       >
         {icon} {children}
