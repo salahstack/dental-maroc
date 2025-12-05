@@ -14,7 +14,6 @@ import BestSellers from '../pages/BestSellers';
 import NewArrivals from '../pages/NewArrivals';
 import Shop from '../pages/Shop';
 import Favorites from '../pages/Favorites';
-import ConfirmOrder from '../pages/ConfirmOrder';
 /**
  * Layouts
  */
@@ -84,10 +83,6 @@ const router = createBrowserRouter([
         ),
       },
     ],
-  },
-  {
-    path: 'confirmation-commande',
-    Component: ConfirmOrder,
   },
 ]);
 

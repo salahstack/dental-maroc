@@ -14,7 +14,7 @@ interface AccordionProps {
 /**
  * Components
  */
-import { IconButton } from './ui/Button';
+import { IconButton } from './Button';
 
 /**
  * Icons
@@ -24,7 +24,7 @@ import { ChevronUp } from 'lucide-react';
 /**
  * Custom hooks
  */
-import { useToggle } from '../hooks/useToggle';
+import { useToggle } from '../../hooks/useToggle';
 
 const Accordion: FC<AccordionProps> = ({ question, answer }) => {
   const [isOpen, toggle] = useToggle();

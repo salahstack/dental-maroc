@@ -19,7 +19,7 @@ import { ShoppingCart } from 'lucide-react';
 /**
  * Custom hooks
  */
-import { useCart } from '../hooks/useCart';
+import useCartActions from '../hooks/cart/useCartActions';
 /**
  * Interfaces
  */
@@ -125,7 +125,7 @@ const newArrivals: ProductDetailsProps[] = [
 
 const ProductDetails = () => {
   const { slug } = useParams<{ slug: string }>();
-  const { addProduct } = useCart();
+  const { addToCart } = useCartActions();
 
   const [quantity, setQuantity] = useState<number>(1);
   const product = newArrivals.find((item) => item.slug === slug);
@@ -219,12 +219,10 @@ const ProductDetails = () => {
         />
         {/* Structured Data */}
         <script type='application/ld+json'>
-          {
-            JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'webSite',
-            })
-          }
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'webSite',
+          })}
         </script>
       </MetaData>
       <div className='container'>
@@ -266,7 +264,7 @@ const ProductDetails = () => {
               <Button
                 classes='w-full'
                 onClick={() => {
-                  addProduct({
+                  addToCart({
                     id: Number(product.id),
                     title,
                     description,

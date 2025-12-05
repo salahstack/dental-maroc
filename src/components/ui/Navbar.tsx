@@ -1,0 +1,65 @@
+/**
+ * Node modules
+ */
+import type { FC } from 'react';
+import { NavLink } from 'react-router-dom';
+import Logo from './Logo';
+import { IconButton } from './Button';
+import { X } from 'lucide-react';
+
+/**
+ * Interfaces
+ */
+interface NavbarItemProps {
+  label: string;
+  link: string;
+}
+interface NavbarProps {
+  navItems: NavbarItemProps[];
+  isNavOpen: boolean;
+  toggle: () => void;
+  classes?: string;
+}
+
+const Navbar: FC<NavbarProps> = ({
+  navItems,
+  classes = '',
+  isNavOpen,
+  toggle,
+}) => {
+  return (
+    <>
+      <nav className={`navbar ${classes} ${isNavOpen && 'active'}`}>
+        <div className='lg:hidden flex items-center justify-between mb-4 pb-4 border-b border-gray-200'>
+          <Logo />
+          <IconButton
+            icon={<X />}
+            variant='text'
+            color='secondary'
+            onClick={toggle}
+          />
+        </div>
+        <ul className='navbar-list'>
+          {navItems.map(({ label, link }, key) => {
+            return (
+              <li key={key}>
+                <NavLink
+                  to={link}
+                  className={({ isActive }) =>
+                    isActive ? 'nav-link active' : 'nav-link'
+                  }
+                  onClick={toggle}
+                >
+                  {label}
+                </NavLink>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+      {isNavOpen && <div className=' lg:hidden fixed inset-0 z-10 bg-black/50'></div>}
+    </>
+  );
+};
+
+export default Navbar;
